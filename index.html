@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza — Minecraft Thumbnail Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap');
+        
+        body {
+            font-family: 'Lora', Georgia, Cambria, serif;
+            background-color: #ffffff;
+            color: #171717;
+        }
+
+        h1, h2, h3, .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Minimal Black & White Tab Styling */
+        .tab-btn {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: #000000;
+            border-bottom: 2px solid #000000;
+            font-weight: 700;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-black selection:text-white bg-white text-neutral-900">
+
+    <div>
+        <header class="border-b border-neutral-200 sticky top-0 bg-white/95 backdrop-blur-sm z-40">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="flex items-center justify-between h-20">
+                    
+                    <!-- Logo / Brand -->
+                    <button onclick="switchTab('about')" class="text-left group">
+                        <span class="text-2xl font-bold tracking-tight text-black heading-serif block">HAMZA</span>
+                        <span class="text-xs text-neutral-500 uppercase tracking-widest block font-sans">Minecraft Thumbnail Designer</span>
+                    </button>
+
+                    <!-- Navigation Tabs -->
+                    <nav class="flex items-center gap-6 sm:gap-8 text-sm">
+                        <button onclick="switchTab('about')" id="tab-about" class="tab-btn active py-2 text-neutral-600 hover:text-black">
+                            About Me
+                        </button>
+                        <button onclick="switchTab('work')" id="tab-work" class="tab-btn py-2 text-neutral-600 hover:text-black">
+                            My Work
+                        </button>
+                        <button onclick="switchTab('contact')" id="tab-contact" class="tab-btn py-2 text-neutral-600 hover:text-black">
+                            Contact
+                        </button>
+                    </nav>
+
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+
+            <section id="content-about" class="tab-content active space-y-12">
+                
+                <div class="space-y-6 max-w-2xl">
+                    <span class="text-xs uppercase tracking-widest text-neutral-500 font-sans border-b border-black pb-1 inline-block">
+                        Open for Commissions
+                    </span>
+                    
+                    <h1 class="text-4xl sm:text-5xl font-bold text-black heading-serif leading-tight">
+                        I make custom Minecraft thumbnails for YouTube creators.
+                    </h1>
+
+                    <p class="text-neutral-700 text-lg leading-relaxed italic">
+                        Hi, I'm Hamza. I design custom 3D scene renders made specifically for Minecraft videos.
+                    </p>
+
+                    <p class="text-neutral-600 text-base leading-relaxed">
+                        I focus entirely on the Minecraft space. Instead of basic screenshots or stiff character poses, I build full 3D scenes with custom player rigs, natural lighting, shaders, rain, fog, and clean composition so your thumbnails look good on any screen.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-4 font-sans text-sm">
+                        <button onclick="switchTab('work')" class="bg-black text-white hover:bg-neutral-800 font-semibold px-6 py-3 transition">
+                            View My Work &rarr;
+                        </button>
+                        <button onclick="switchTab('contact')" class="border border-neutral-900 text-black hover:bg-neutral-100 font-semibold px-6 py-3 transition">
+                            Contact Me
+                        </button>
+                    </div>
+                </div>
+
+                <!-- What I Do -->
+                <div class="border-t border-neutral-200 pt-10 space-y-8">
+                    <h2 class="text-2xl font-bold text-black heading-serif">What I Do</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-neutral-800">
+                        <div class="space-y-2 border-l-2 border-black pl-4">
+                            <h3 class="font-bold text-lg heading-serif text-black">1. Custom Character Posing</h3>
+                            <p class="text-sm text-neutral-600 leading-relaxed">I pose your player skins tailored to your video concept—whether it's an action battle, a dramatic showdown, or a peaceful survival scene.</p>
+                        </div>
+
+                        <div class="space-y-2 border-l-2 border-black pl-4">
+                            <h3 class="font-bold text-lg heading-serif text-black">2. Lighting & Atmosphere</h3>
+                            <p class="text-sm text-neutral-600 leading-relaxed">I add realistic light shafts, dark stormy weather, rain drops, shadows, and glow effects to make characters stand out clearly on YouTube feeds.</p>
+                        </div>
+
+                        <div class="space-y-2 border-l-2 border-black pl-4">
+                            <h3 class="font-bold text-lg heading-serif text-black">3. Clear Framing</h3>
+                            <p class="text-sm text-neutral-600 leading-relaxed">I keep the layout simple and uncluttered so viewers instantly understand what your video is about, even on small mobile screens.</p>
+                        </div>
+
+                        <div class="space-y-2 border-l-2 border-black pl-4">
+                            <h3 class="font-bold text-lg heading-serif text-black">4. Fast Turnaround</h3>
+                            <p class="text-sm text-neutral-600 leading-relaxed">I deliver files on time so you can stay consistent with your upload schedule.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workflow Process -->
+                <div class="border-t border-neutral-200 pt-10 space-y-6">
+                    <h2 class="text-2xl font-bold text-black heading-serif">How It Works</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-sans">
+                        <div class="border border-neutral-200 p-5 space-y-2">
+                            <span class="text-xs font-bold text-neutral-400 uppercase tracking-widest block">Step 1</span>
+                            <h3 class="font-bold text-black text-base heading-serif">Send Your Idea</h3>
+                            <p class="text-xs text-neutral-600 leading-relaxed">Message me on Discord or Email with your video title, skin file (.png), and any specific scene idea you have.</p>
+                        </div>
+
+                        <div class="border border-neutral-200 p-5 space-y-2">
+                            <span class="text-xs font-bold text-neutral-400 uppercase tracking-widest block">Step 2</span>
+                            <h3 class="font-bold text-black text-base heading-serif">3D Scene Setup</h3>
+                            <p class="text-xs text-neutral-600 leading-relaxed">I create the 3D world, set up character rigs, add custom weapons, configure lighting, and render the scene.</p>
+                        </div>
+
+                        <div class="border border-neutral-200 p-5 space-y-2">
+                            <span class="text-xs font-bold text-neutral-400 uppercase tracking-widest block">Step 3</span>
+                            <h3 class="font-bold text-black text-base heading-serif">Final Delivery</h3>
+                            <p class="text-xs text-neutral-600 leading-relaxed">I show you a preview draft. Once you like it, I send the high-resolution file ready to upload to YouTube.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQs -->
+                <div class="border-t border-neutral-200 pt-10 space-y-6">
+                    <h2 class="text-2xl font-bold text-black heading-serif">Frequently Asked Questions</h2>
+                    
+                    <div class="space-y-4 text-sm text-neutral-700">
+                        <div class="border border-neutral-200 p-4 space-y-1">
+                            <h3 class="font-bold text-black heading-serif text-base">What do I need to give you before starting?</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">Just your Minecraft player skin file (.png), your video title or main idea, and any specific poses or items you want in the thumbnail.</p>
+                        </div>
+
+                        <div class="border border-neutral-200 p-4 space-y-1">
+                            <h3 class="font-bold text-black heading-serif text-base">How fast will I get my thumbnail?</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">Turnaround time depends on complexity, but most thumbnails are finished within 24 to 48 hours.</p>
+                        </div>
+
+                        <div class="border border-neutral-200 p-4 space-y-1">
+                            <h3 class="font-bold text-black heading-serif text-base">Can you handle custom skins, capes, or items?</h3>
+                            <p class="text-neutral-600 text-xs leading-relaxed">Yes! I can rig custom skins, 3D weapons like tridents or hammers, shields, armor, and custom capes.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="content-work" class="tab-content space-y-12">
+                
+                <div class="border-b border-neutral-200 pb-4 flex justify-between items-end">
+                    <div>
+                        <h1 class="text-3xl font-bold text-black heading-serif">My Work</h1>
+                        <p class="text-neutral-500 text-sm mt-1">Sample 3D renders and thumbnail concepts</p>
+                    </div>
+                    <span class="text-xs text-neutral-400 font-sans">Click image to enlarge</span>
+                </div>
+
+                <div class="space-y-12">
+                    
+                    <!-- Render Card 1 -->
+                    <div class="border border-neutral-200 p-4 sm:p-6 space-y-6">
+                        <div class="overflow-hidden bg-neutral-100 relative cursor-pointer group border border-neutral-200" onclick="openLightbox('Minecraft_characters_posing_near…_202609032213.jpeg', 'Action & PvP Scene')">
+                            <img 
+                                src="Minecraft_characters_posing_near…_202609032213.jpeg" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Action+%26+PvP+Minecraft+Render'"
+                                alt="Minecraft Action PvP Scene" 
+                                class="w-full h-auto object-cover group-hover:scale-102 transition duration-300"
+                            />
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-sans uppercase tracking-widest">
+                                Click to View Full Size
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-2xl font-bold text-black heading-serif">1. Action & PvP Battle Render</h3>
+                            <p class="text-neutral-700 text-sm leading-relaxed">
+                                High-energy character battle featuring custom combat posing, Spider-Man and player skin rigs, custom weapons, and warm sunset lighting.
+                            </p>
+                            <div class="text-xs text-neutral-500 font-sans pt-2 border-t border-neutral-100 flex flex-wrap gap-4">
+                                <span><strong>Ideal for:</strong> Modded SMPs, PvP challenges, superhero videos</span>
+                                <span><strong>Format:</strong> High-Res 3D Scene</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Render Card 2 -->
+                    <div class="border border-neutral-200 p-4 sm:p-6 space-y-6">
+                        <div class="overflow-hidden bg-neutral-100 relative cursor-pointer group border border-neutral-200" onclick="openLightbox('thumbnail_test.jpeg', 'Base & Survival Showcase')">
+                            <img 
+                                src="thumbnail_test.jpeg" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Base+%26+Survival+Minecraft+Render'"
+                                alt="Minecraft Base Tour Scene" 
+                                class="w-full h-auto object-cover group-hover:scale-102 transition duration-300"
+                            />
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-sans uppercase tracking-widest">
+                                Click to View Full Size
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-2xl font-bold text-black heading-serif">2. Base Tour & Survival Showcase Render</h3>
+                            <p class="text-neutral-700 text-sm leading-relaxed">
+                                Survival build showcase focusing on detailed architecture, soft volumetric sun shafts, dynamic foliage, and clean character placement.
+                            </p>
+                            <div class="text-xs text-neutral-500 font-sans pt-2 border-t border-neutral-100 flex flex-wrap gap-4">
+                                <span><strong>Ideal for:</strong> Let's Plays, base tours, duo survival series</span>
+                                <span><strong>Format:</strong> High-Res 3D Scene</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Render Card 3 -->
+                    <div class="border border-neutral-200 p-4 sm:p-6 space-y-6">
+                        <div class="overflow-hidden bg-neutral-100 relative cursor-pointer group border border-neutral-200" onclick="openLightbox('Minecraft_characters_facing_each…_202609032259.jpeg', 'Dramatic Boss Duel & Storm Battle')">
+                            <img 
+                                src="Minecraft_characters_facing_each…_202609032259.jpeg" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Dramatic+Storm+%26+Trident+Duel+Render'"
+                                alt="Minecraft Storm Trident Battle Scene" 
+                                class="w-full h-auto object-cover group-hover:scale-102 transition duration-300"
+                            />
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-sans uppercase tracking-widest">
+                                Click to View Full Size
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-2xl font-bold text-black heading-serif">3. Dramatic Boss Duel & Storm Battle Render</h3>
+                            <p class="text-neutral-700 text-sm leading-relaxed">
+                                Atmospheric standoff in a stormy mountain setting with rain effects, trident weapons, custom character hooded skins, dark sky fog, and high-tension framing.
+                            </p>
+                            <div class="text-xs text-neutral-500 font-sans pt-2 border-t border-neutral-100 flex flex-wrap gap-4">
+                                <span><strong>Ideal for:</strong> Lore series, boss fights, dramatic SMP finales, 1v1 duels</span>
+                                <span><strong>Format:</strong> High-Res 3D Scene</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="content-contact" class="tab-content space-y-10 max-w-2xl mx-auto">
+                
+                <div class="text-center space-y-3">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-black heading-serif">Get in Touch</h1>
+                    <p class="text-neutral-600 text-sm">
+                        If you need a thumbnail for your next video, reach out with your video concept or script idea!
+                    </p>
+                </div>
+
+                <!-- Contact Box -->
+                <div class="border border-neutral-900 p-6 sm:p-8 space-y-6">
+                    
+                    <!-- Discord -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
+                        <div>
+                            <span class="text-xs text-neutral-400 font-sans uppercase tracking-widest block">Discord</span>
+                            <span class="text-xl font-bold text-black heading-serif">op_hamm_</span>
+                        </div>
+                        <button onclick="copyDiscord()" id="copy-btn" class="bg-black text-white hover:bg-neutral-800 text-xs font-sans font-semibold px-5 py-3 transition">
+                            Copy Discord Username
+                        </button>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                        <div>
+                            <span class="text-xs text-neutral-400 font-sans uppercase tracking-widest block">Email</span>
+                            <span class="text-base font-bold text-black heading-serif">hamzashaikh1823@gmail.com</span>
+                        </div>
+                        <a href="mailto:hamzashaikh1823@gmail.com" class="border border-black text-black hover:bg-neutral-100 text-xs font-sans font-semibold px-5 py-3 text-center transition">
+                            Send Email
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- What to Include Checklist -->
+                <div class="border border-neutral-200 p-6 space-y-3 font-sans text-xs">
+                    <h3 class="font-bold text-black uppercase tracking-wider text-sm">What to include when messaging me:</h3>
+                    <ul class="space-y-2 text-neutral-700 list-disc list-inside leading-relaxed">
+                        <li>Your Minecraft player skin file (the .png file).</li>
+                        <li>Your video title or a quick 1-sentence idea of what happens in the video.</li>
+                        <li>Any specific weapon, item, or pose you want to see.</li>
+                        <li>Your deadline (when you plan to upload).</li>
+                    </ul>
+                </div>
+
+                <!-- Quick Message Box -->
+                <div class="bg-neutral-50 border border-neutral-200 p-6 space-y-4 font-sans">
+                    <h3 class="font-bold text-black text-sm uppercase tracking-wider">Quick Template Message</h3>
+                    <p class="text-xs text-neutral-600">You can copy this template message to send me on Discord:</p>
+                    <textarea id="brief-text" rows="3" class="w-full bg-white border border-neutral-300 p-3 text-xs text-neutral-800 focus:outline-none focus:border-black" readonly>Hey Hamza, I have a Minecraft video coming up and need a thumbnail. Let me know if you are open for a commission!</textarea>
+                    <button onclick="copyBrief()" id="copy-brief-btn" class="w-full border border-black text-black hover:bg-neutral-100 text-xs font-semibold py-2.5 transition">
+                        Copy Message Text
+                    </button>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="max-w-4xl w-full space-y-3" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center text-white">
+                <span id="lightbox-title" class="font-bold text-lg heading-serif"></span>
+                <button onclick="closeLightbox()" class="text-neutral-400 hover:text-white text-2xl font-bold font-sans px-2">&times;</button>
+            </div>
+            <img id="lightbox-img" src="" alt="Enlarged render" class="w-full h-auto max-h-[80vh] object-contain border border-neutral-700">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 py-8 text-center text-xs text-neutral-500 font-sans">
+        © Hamza — Minecraft Thumbnail Designer
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('content-' + tabName).classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function copyDiscord() {
+            var tempInput = document.createElement("input");
+            tempInput.value = "op_hamm_";
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const btn = document.getElementById('copy-btn');
+            btn.innerText = 'Copied Username! ✓';
+            setTimeout(() => {
+                btn.innerText = 'Copy Discord Username';
+            }, 2000);
+        }
+
+        function copyBrief() {
+            var briefBox = document.getElementById('brief-text');
+            var tempInput = document.createElement("textarea");
+            tempInput.value = briefBox.value;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const btn = document.getElementById('copy-brief-btn');
+            btn.innerText = 'Copied to Clipboard! ✓';
+            setTimeout(() => {
+                btn.innerText = 'Copy Message Text';
+            }, 2000);
+        }
+
+        function openLightbox(src, title) {
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            img.onerror = function() {
+                this.onerror = null;
+                this.src = 'https://placehold.co/1280x720/171717/ffffff?text=' + encodeURIComponent(title);
+            };
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('flex');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.getElementById('lightbox').classList.remove('flex');
+        }
+    </script>
+
+</body>
+</html>
