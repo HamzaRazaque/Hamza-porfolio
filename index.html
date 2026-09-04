@@ -167,39 +167,39 @@
                     <p class="text-neutral-500 text-xs sm:text-sm mt-1">Click any thumbnail image to view full size</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     
                     <!-- Render Card 1 (Void Fall Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden p-3 bg-white hover:border-neutral-900 transition">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden cursor-pointer border border-neutral-200 relative group" onclick="openLightbox('Character_falling_into_the_void_202609041557.jpeg', 'Minecraft Render 1')">
+                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md" onclick="openLightbox('Character_falling_into_the_void_202609041557.jpeg')">
+                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
                             <img 
                                 src="Character_falling_into_the_void_202609041557.jpeg" 
                                 alt="Minecraft Thumbnail Render 1" 
-                                class="w-full h-full object-cover group-hover:scale-102 transition duration-300"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                 onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+1';"
                             />
                         </div>
                     </div>
 
                     <!-- Render Card 2 (PvP Battle Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden p-3 bg-white hover:border-neutral-900 transition">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden cursor-pointer border border-neutral-200 relative group" onclick="openLightbox('Minecraft_characters_posing_near…_202609032213.jpeg', 'Minecraft Render 2')">
+                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md" onclick="openLightbox('Minecraft_characters_posing_near…_202609032213.jpeg')">
+                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
                             <img 
                                 src="Minecraft_characters_posing_near…_202609032213.jpeg" 
                                 alt="Minecraft Thumbnail Render 2" 
-                                class="w-full h-full object-cover group-hover:scale-102 transition duration-300"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                 onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+2';"
                             />
                         </div>
                     </div>
 
                     <!-- Render Card 3 (Survival Base Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden p-3 bg-white hover:border-neutral-900 transition">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden cursor-pointer border border-neutral-200 relative group" onclick="openLightbox('thumbnail_test.jpeg', 'Minecraft Render 3')">
+                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md sm:col-span-2 lg:col-span-1" onclick="openLightbox('thumbnail_test.jpeg')">
+                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
                             <img 
                                 src="thumbnail_test.jpeg" 
                                 alt="Minecraft Thumbnail Render 3" 
-                                class="w-full h-full object-cover group-hover:scale-102 transition duration-300"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                                 onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+3';"
                             />
                         </div>
@@ -293,13 +293,10 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeLightbox()">
-        <div class="max-w-4xl w-full space-y-3" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center text-white">
-                <span id="lightbox-title" class="font-bold text-sm sm:text-base serif-heading truncate pr-2"></span>
-                <button onclick="closeLightbox()" class="text-neutral-400 hover:text-white text-2xl font-bold px-2">&times;</button>
-            </div>
-            <img id="lightbox-img" src="" alt="Enlarged render" class="w-full h-auto max-h-[75vh] object-contain border border-neutral-700">
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-3 sm:p-6" onclick="closeLightbox()">
+        <div class="max-w-6xl w-full flex flex-col items-center justify-center relative" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white/80 hover:text-white text-3xl font-bold p-2 z-10 focus:outline-none">&times;</button>
+            <img id="lightbox-img" src="" alt="Enlarged render" class="w-auto h-auto max-w-full max-h-[88vh] object-contain border border-neutral-800 shadow-2xl">
         </div>
     </div>
 
@@ -335,9 +332,8 @@
             }, 2000);
         }
 
-        function openLightbox(src, title) {
+        function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox-title').innerText = title;
             document.getElementById('lightbox').classList.remove('hidden');
             document.getElementById('lightbox').classList.add('flex');
         }
