@@ -1,348 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamza — Minecraft Thumbnail Designer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
-        
-        body {
-            font-family: 'Lora', serif;
-            background-color: #ffffff;
-            color: #171717;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamza — Minecraft Thumbnail Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        h1, h2, h3, .serif-heading {
-            font-family: 'Playfair Display', serif;
-        }
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .tab-btn {
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
+:root {
+  --bg:      #F8F5F0;
+  --surface: #EFEBE4;
+  --border:  #DDD8D0;
+  --text:    #1A1714;
+  --muted:   #7A736A;
+  --accent:  #2D5A3D;
+  --serif-display: 'Playfair Display', Georgia, serif;
+  --serif-body:    'Lora', Georgia, serif;
+}
 
-        .tab-btn.active {
-            border-color: #171717;
-            color: #171717;
-            font-weight: 700;
-        }
+html { scroll-behavior: smooth; }
 
-        .tab-content {
-            display: none;
-        }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-        .tab-content.active {
-            display: block;
-        }
-    </style>
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ── PAGE LOAD ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-1 { animation: fadeIn 0.6s ease 0.05s both; }
+.fade-2 { animation: fadeIn 0.6s ease 0.15s both; }
+.fade-3 { animation: fadeIn 0.6s ease 0.28s both; }
+.fade-4 { animation: fadeIn 0.6s ease 0.42s both; }
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(248,245,240,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer; text-decoration: none;
+}
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif-display);
+  font-weight: 900; color: #fff; font-size: 16px;
+  flex-shrink: 0;
+}
+.logo-name {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 16px;
+  color: var(--text); letter-spacing: 0.01em;
+}
+.logo-role {
+  font-size: 11px; color: var(--muted);
+  font-family: var(--serif-body); font-style: italic;
+}
+
+nav { display: flex; gap: 2px; }
+.nav-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--serif-body); font-size: 14px;
+  color: var(--muted); padding: 7px 13px; border-radius: 7px;
+  transition: color 0.18s, background 0.18s;
+}
+.nav-btn:hover { color: var(--text); background: var(--surface); }
+.nav-btn.active { color: var(--accent); font-weight: 500; }
+
+/* ── TABS ── */
+.tab { display: none; }
+.tab.active { display: block; }
+
+/* ── ABOUT ── */
+.about-wrap { padding: 72px 0 80px; }
+
+.avail-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-family: var(--serif-body);
+  font-style: italic; color: var(--accent);
+  background: rgba(45,90,61,0.08);
+  border: 1px solid rgba(45,90,61,0.2);
+  padding: 4px 13px; border-radius: 99px;
+  margin-bottom: 26px;
+}
+.avail-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  animation: blink 2.5s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; } 50% { opacity: 0.2; }
+}
+
+.hero-title {
+  font-family: var(--serif-display);
+  font-weight: 900;
+  font-size: clamp(36px, 5.5vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 640px;
+  margin-bottom: 22px;
+}
+
+.hero-body {
+  font-size: 17px; color: var(--muted);
+  max-width: 460px; line-height: 1.75;
+  margin-bottom: 38px;
+}
+.hero-body strong { color: var(--text); font-weight: 500; }
+
+/* Stats */
+.stats-row {
+  display: flex; gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  max-width: 480px; margin-bottom: 38px;
+  background: #fff;
+}
+.stat {
+  flex: 1; padding: 16px 18px;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 22px;
+  color: var(--accent); display: block;
+}
+.stat-n.dark { color: var(--text); }
+.stat-l { font-size: 11px; color: var(--muted); margin-top: 1px; font-style: italic; }
+
+/* Buttons */
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn-fill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--accent); color: #fff;
+  font-family: var(--serif-body); font-size: 14px;
+  padding: 11px 20px; border-radius: 9px; border: none;
+  cursor: pointer; transition: opacity 0.18s;
+  text-decoration: none;
+}
+.btn-fill:hover { opacity: 0.85; }
+
+.btn-line {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--text);
+  font-family: var(--serif-body); font-size: 14px;
+  padding: 11px 20px; border-radius: 9px;
+  border: 1px solid var(--border);
+  cursor: pointer; transition: background 0.18s, border-color 0.18s;
+  text-decoration: none;
+}
+.btn-line:hover { background: var(--surface); border-color: #c8c2ba; }
+
+/* Process */
+.divider {
+  height: 1px; background: var(--border);
+  margin: 64px 0 48px;
+}
+
+.section-title {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 26px;
+  color: var(--text); margin-bottom: 28px;
+}
+
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+@media (max-width:620px) { .steps { grid-template-columns: 1fr; } }
+
+.step {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+.step-num {
+  font-family: var(--serif-display);
+  font-weight: 900; font-size: 13px;
+  color: var(--accent); margin-bottom: 12px;
+  display: block; letter-spacing: 0.05em;
+}
+.step-t {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 16px;
+  color: var(--text); margin-bottom: 6px;
+}
+.step-b { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── WORK TAB ── */
+.work-wrap { padding: 64px 0 80px; }
+
+.work-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 16px; margin-bottom: 32px;
+}
+.work-title {
+  font-family: var(--serif-display);
+  font-weight: 900; font-size: clamp(28px,4vw,42px);
+  color: var(--text);
+}
+.work-sub { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 4px; }
+
+.view-toggle {
+  display: flex; gap: 4px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 9px; padding: 4px;
+}
+.tog {
+  font-size: 12px; font-family: var(--serif-body);
+  padding: 7px 14px; border-radius: 6px; border: none;
+  cursor: pointer; color: var(--muted); background: transparent;
+  transition: all 0.18s;
+}
+.tog.active { background: var(--accent); color: #fff; }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+@media (max-width:600px) { .gallery { grid-template-columns: 1fr; } }
+
+.g-card {
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer; position: relative; background: var(--surface);
+  transition: border-color 0.2s;
+}
+.g-card:hover { border-color: var(--accent); }
+.g-card img {
+  width: 100%; aspect-ratio: 16/9;
+  object-fit: cover; display: block;
+  transition: transform 0.35s ease;
+}
+.g-card:hover img { transform: scale(1.04); }
+.g-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0; transition: opacity 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.g-card:hover .g-overlay { opacity: 1; }
+.g-overlay span {
+  font-size: 12px; color: #fff;
+  font-family: var(--serif-body); font-style: italic;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 6px 14px; border-radius: 99px;
+}
+
+/* YT preview */
+.yt-note {
+  font-size: 13px; color: var(--accent); font-style: italic;
+  background: rgba(45,90,61,0.07); border: 1px solid rgba(45,90,61,0.18);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 16px;
+  display: none;
+}
+.yt-inp-wrap {
+  margin-bottom: 20px; display: none;
+}
+.yt-inp-label { font-size: 12px; color: var(--muted); font-style: italic; display: block; margin-bottom: 6px; }
+.yt-inp-wrap input {
+  width: 100%; max-width: 520px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 14px;
+  font-size: 14px; font-family: var(--serif-body);
+  color: var(--text); outline: none;
+  transition: border-color 0.18s;
+}
+.yt-inp-wrap input:focus { border-color: var(--accent); }
+
+.yt-grid { display: none; grid-template-columns: repeat(3,1fr); gap: 14px; }
+@media (max-width:600px) { .yt-grid { grid-template-columns: 1fr; } }
+
+.yt-card { background: #111; border-radius: 9px; overflow: hidden; cursor: pointer; }
+.yt-thumb { position: relative; }
+.yt-thumb img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.yt-dur {
+  position: absolute; bottom: 5px; right: 6px;
+  background: rgba(0,0,0,0.82); color: #fff;
+  font-size: 11px; font-family: monospace; font-weight: 600;
+  padding: 2px 6px; border-radius: 3px;
+}
+.yt-meta { display: flex; gap: 9px; padding: 10px 11px; }
+.yt-av {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent); display: flex; align-items: center;
+  justify-content: center; font-weight: 700; color: #fff; font-size: 13px;
+}
+.yt-t {
+  font-size: 12px; font-weight: 600; color: #f0f0f0;
+  line-height: 1.4; margin-bottom: 3px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.yt-s { font-size: 11px; color: #888; }
+
+/* ── CONTACT TAB ── */
+.contact-wrap { padding: 64px 0 80px; }
+.contact-title {
+  font-family: var(--serif-display);
+  font-weight: 900; font-size: clamp(26px,4vw,40px);
+  color: var(--text); margin-bottom: 8px;
+}
+.contact-sub { font-size: 15px; color: var(--muted); font-style: italic; margin-bottom: 44px; }
+
+.contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+@media (max-width:620px) { .contact-cards { grid-template-columns: 1fr; } }
+
+.c-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 22px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.c-icon {
+  width: 38px; height: 38px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+}
+.ic-discord { background: #eef0ff; color: #5865F2; }
+.ic-yt      { background: #fff0f0; color: #e00; }
+.ic-mail    { background: rgba(45,90,61,0.08); color: var(--accent); }
+
+.c-platform { font-size: 11px; color: var(--muted); font-style: italic; }
+.c-handle {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 17px; color: var(--text);
+  margin: 2px 0 3px;
+}
+.c-desc { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+
+.checklist {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+.checklist h3 {
+  font-family: var(--serif-display);
+  font-weight: 700; font-size: 16px; color: var(--text);
+  margin-bottom: 16px;
+}
+.check-list { display: flex; flex-direction: column; gap: 9px; }
+.check-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--muted);
+}
+.check-item::before {
+  content: '';
+  width: 17px; height: 17px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(45,90,61,0.1);
+  border: 1px solid rgba(45,90,61,0.25);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%232D5A3D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 9px 7px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ── LIGHTBOX ── */
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(10,8,6,0.94);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+.lb.open { display: flex; }
+.lb-inner { position: relative; max-width: 1100px; width: 100%; }
+.lb img { width: 100%; max-height: 88vh; object-fit: contain; border-radius: 8px; display: block; }
+.lb-close {
+  position: absolute; top: -42px; right: 0;
+  background: none; border: none; cursor: pointer;
+  color: #aaa; font-size: 22px; transition: color 0.18s;
+}
+.lb-close:hover { color: #fff; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 22px; right: 22px; z-index: 200;
+  background: var(--accent); color: #fff;
+  font-size: 13px; font-family: var(--serif-body);
+  padding: 11px 18px; border-radius: 9px;
+  display: flex; align-items: center; gap: 8px;
+  transform: translateY(70px); opacity: 0;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0; text-align: center;
+  font-size: 13px; color: var(--muted); font-style: italic;
+  margin-top: 40px;
+}
+
+@media (max-width: 480px) {
+  .nav-btn { font-size: 13px; padding: 6px 10px; }
+  .logo-role { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
 </head>
-<body class="min-h-screen antialiased flex flex-col justify-between selection:bg-neutral-900 selection:text-white">
 
-    <div>
-        <!-- Navigation Header with Tabs -->
-        <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6">
-                <div class="flex flex-col sm:flex-row items-center justify-between py-3 sm:py-0 sm:h-20 gap-3 sm:gap-0">
-                    
-                    <!-- Logo / Brand -->
-                    <div class="flex items-center gap-3 text-center sm:text-left">
-                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-neutral-900 flex items-center justify-center font-bold text-neutral-900 serif-heading text-lg sm:text-xl shrink-0">
-                            H
-                        </div>
-                        <div>
-                            <span class="font-bold text-neutral-900 text-base sm:text-lg block leading-tight serif-heading">Hamza</span>
-                            <span class="text-xs text-neutral-500 block">Thumbnail Designer</span>
-                        </div>
-                    </div>
+<body>
 
-                    <!-- Navigation Tabs -->
-                    <nav class="flex items-center justify-center gap-1 sm:gap-4 w-full sm:w-auto border-t sm:border-t-0 border-neutral-100 pt-2 sm:pt-0">
-                        <button onclick="switchTab('about')" id="tab-about" class="tab-btn active px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-neutral-600 hover:text-neutral-900">
-                            About Me
-                        </button>
-                        <button onclick="switchTab('work')" id="tab-work" class="tab-btn px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-neutral-600 hover:text-neutral-900">
-                            My Work
-                        </button>
-                        <button onclick="switchTab('contact')" id="tab-contact" class="tab-btn px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-neutral-600 hover:text-neutral-900">
-                            Contact
-                        </button>
-                    </nav>
-
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Content Area -->
-        <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
-
-            <!-- TAB 1: ABOUT ME -->
-            <section id="content-about" class="tab-content active space-y-10 sm:space-y-12">
-                
-                <div class="space-y-4 sm:space-y-6 max-w-2xl">
-                    <div class="inline-block px-3 py-1 border border-neutral-900 text-neutral-900 text-xs font-semibold uppercase tracking-wider">
-                        Available for Hire
-                    </div>
-                    
-                    <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold text-neutral-900 leading-tight break-words">
-                        Custom Minecraft thumbnails designed to get more clicks.
-                    </h1>
-
-                    <p class="text-neutral-700 text-sm sm:text-base leading-relaxed">
-                        Hi, I'm Hamza. I make thumbnails specifically for Minecraft YouTube channels. I help creators turn their video concepts into clean, eye-catching 3D scenes that stand out on mobile and desktop feeds.
-                    </p>
-
-                    <p class="text-neutral-600 text-xs sm:text-sm leading-relaxed">
-                        I focus on clear character posing, realistic weather and storm lighting, custom weapons, and clean backgrounds so viewers know what your video is about in one second.
-                    </p>
-
-                    <div class="pt-2 flex flex-wrap gap-3">
-                        <button onclick="switchTab('work')" class="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm transition">
-                            See My Work &rarr;
-                        </button>
-                        <button onclick="switchTab('contact')" class="border border-neutral-900 hover:bg-neutral-100 text-neutral-900 font-medium px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm transition">
-                            Get in Touch
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Simple Workflow Section -->
-                <div class="space-y-6 pt-8 border-t border-neutral-200">
-                    <h2 class="text-xl sm:text-2xl font-bold text-neutral-900">How It Works</h2>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                        <div class="p-4 sm:p-5 border border-neutral-200 space-y-2">
-                            <span class="text-xs font-bold text-neutral-400 block uppercase tracking-wider">Step 1</span>
-                            <h3 class="font-bold text-neutral-900 text-base">Send Your Idea</h3>
-                            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">Tell me your video topic, script idea, or send your Minecraft skin file.</p>
-                        </div>
-
-                        <div class="p-4 sm:p-5 border border-neutral-200 space-y-2">
-                            <span class="text-xs font-bold text-neutral-400 block uppercase tracking-wider">Step 2</span>
-                            <h3 class="font-bold text-neutral-900 text-base">3D Scene Setup</h3>
-                            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">I build the 3D scene, pose characters, adjust weather/lighting, and style the frame.</p>
-                        </div>
-
-                        <div class="p-4 sm:p-5 border border-neutral-200 space-y-2">
-                            <span class="text-xs font-bold text-neutral-400 block uppercase tracking-wider">Step 3</span>
-                            <h3 class="font-bold text-neutral-900 text-base">Final Delivery</h3>
-                            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">You receive a high-resolution, click-ready thumbnail file ready for upload.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- What I Offer -->
-                <div class="space-y-4 pt-6 border-t border-neutral-200">
-                    <h2 class="text-xl sm:text-2xl font-bold text-neutral-900">What I Offer</h2>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-neutral-700">
-                        <li class="p-3.5 border border-neutral-200 flex items-start gap-2">
-                            <span class="font-bold">&bull;</span>
-                            <span><strong>Custom Posing:</strong> Dynamic combat and story poses built specifically for your characters.</span>
-                        </li>
-                        <li class="p-3.5 border border-neutral-200 flex items-start gap-2">
-                            <span class="font-bold">&bull;</span>
-                            <span><strong>Custom Lighting:</strong> Sun shafts, storm shadows, and night atmosphere that look realistic.</span>
-                        </li>
-                        <li class="p-3.5 border border-neutral-200 flex items-start gap-2">
-                            <span class="font-bold">&bull;</span>
-                            <span><strong>Mobile Readable:</strong> Clear layouts that stay visible even on tiny mobile phone screens.</span>
-                        </li>
-                        <li class="p-3.5 border border-neutral-200 flex items-start gap-2">
-                            <span class="font-bold">&bull;</span>
-                            <span><strong>Fast Delivery:</strong> Quick turnaround so you never delay your upload schedule.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </section>
-
-
-            <!-- TAB 2: MY WORK -->
-            <section id="content-work" class="tab-content space-y-8">
-                
-                <div class="border-b border-neutral-200 pb-4">
-                    <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900">My Work</h1>
-                    <p class="text-neutral-500 text-xs sm:text-sm mt-1">Click any thumbnail image to view full size</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    
-                    <!-- Render Card 1 (Void Fall Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md" onclick="openLightbox('Character_falling_into_the_void_202609041557.jpeg')">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
-                            <img 
-                                src="Character_falling_into_the_void_202609041557.jpeg" 
-                                alt="Minecraft Thumbnail Render 1" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+1';"
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Render Card 2 (PvP Battle Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md" onclick="openLightbox('Minecraft_characters_posing_near…_202609032213.jpeg')">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
-                            <img 
-                                src="Minecraft_characters_posing_near…_202609032213.jpeg" 
-                                alt="Minecraft Thumbnail Render 2" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+2';"
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Render Card 3 (Survival Base Scene) -->
-                    <div class="border border-neutral-200 overflow-hidden bg-white hover:border-neutral-900 transition group cursor-pointer shadow-sm hover:shadow-md sm:col-span-2 lg:col-span-1" onclick="openLightbox('thumbnail_test.jpeg')">
-                        <div class="aspect-video bg-neutral-100 overflow-hidden relative">
-                            <img 
-                                src="thumbnail_test.jpeg" 
-                                alt="Minecraft Thumbnail Render 3" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                                onerror="this.onerror=null; this.src='https://placehold.co/1280x720/171717/ffffff?text=Minecraft+Thumbnail+3';"
-                            />
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- TAB 3: CONTACT -->
-            <section id="content-contact" class="tab-content space-y-8">
-                
-                <div class="space-y-2">
-                    <h1 class="text-2xl sm:text-3xl font-bold text-neutral-900">Contact & Socials</h1>
-                    <p class="text-xs sm:text-sm text-neutral-600">Send me a message anytime to discuss a thumbnail project or subscribe to my channel.</p>
-                </div>
-
-                <!-- Contact Details -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    
-                    <div class="p-4 sm:p-6 border border-neutral-200 space-y-2 flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Discord</span>
-                            <div class="text-lg sm:text-xl font-bold text-neutral-900 break-words">op_hamm_</div>
-                            <p class="text-xs text-neutral-500 mt-1">Fastest response time on Discord.</p>
-                        </div>
-                        <button onclick="copyDiscord()" id="copy-btn" class="mt-3 w-full border border-neutral-900 hover:bg-neutral-100 text-neutral-900 text-xs font-semibold py-2 transition">
-                            Copy Discord Tag
-                        </button>
-                    </div>
-
-                    <div class="p-4 sm:p-6 border border-neutral-200 space-y-2 flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Email</span>
-                            <div class="text-sm sm:text-base font-bold text-neutral-900 break-all">hamzashaikh1823@gmail.com</div>
-                            <p class="text-xs text-neutral-500 mt-1">For business inquiries and orders.</p>
-                        </div>
-                        <a href="mailto:hamzashaikh1823@gmail.com" class="mt-3 block w-full text-center bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold py-2 transition">
-                            Send Email
-                        </a>
-                    </div>
-
-                    <div class="p-4 sm:p-6 border border-neutral-200 space-y-2 flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">YouTube</span>
-                            <div class="text-lg sm:text-xl font-bold text-neutral-900 break-words">@OpHam01</div>
-                            <p class="text-xs text-neutral-500 mt-1">Watch speedarts & video updates.</p>
-                        </div>
-                        <a href="https://www.youtube.com/@OpHam01" target="_blank" rel="noopener noreferrer" class="mt-3 block w-full text-center bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold py-2 transition">
-                            Subscribe on YouTube
-                        </a>
-                    </div>
-
-                </div>
-
-                <!-- What to send checklist -->
-                <div class="p-4 sm:p-6 border border-neutral-200 space-y-3 bg-neutral-50">
-                    <h2 class="text-base sm:text-lg font-bold text-neutral-900">What to include in your message:</h2>
-                    <ul class="text-xs sm:text-sm text-neutral-700 space-y-1.5 list-disc list-inside">
-                        <li>Your video title or concept idea</li>
-                        <li>Your Minecraft skin file (`.png`)</li>
-                        <li>Any specific weapons, items, or poses you want</li>
-                        <li>Your deadline (when you plan to upload)</li>
-                    </ul>
-                </div>
-
-                <!-- FAQ Section -->
-                <div class="space-y-4 pt-6 border-t border-neutral-200">
-                    <h2 class="text-xl sm:text-2xl font-bold text-neutral-900">Frequently Asked Questions</h2>
-                    
-                    <div class="space-y-3 text-xs sm:text-sm text-neutral-700">
-                        <div class="border-b border-neutral-200 pb-3 space-y-1">
-                            <p class="font-bold text-neutral-900">How long does a thumbnail take?</p>
-                            <p class="text-neutral-600">Usually 24 to 48 hours depending on how complex the 3D scene is.</p>
-                        </div>
-                        <div class="border-b border-neutral-200 pb-3 space-y-1">
-                            <p class="font-bold text-neutral-900">Can you use my custom Minecraft skin?</p>
-                            <p class="text-neutral-600">Yes! Just send me your skin `.png` file or your Minecraft username.</p>
-                        </div>
-                        <div class="border-b border-neutral-200 pb-3 space-y-1">
-                            <p class="font-bold text-neutral-900">What if I need changes?</p>
-                            <p class="text-neutral-600">I offer revisions to adjust lighting, posing, or colors until you are happy with it.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-        </main>
-    </div>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-3 sm:p-6" onclick="closeLightbox()">
-        <div class="max-w-6xl w-full flex flex-col items-center justify-center relative" onclick="event.stopPropagation()">
-            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white/80 hover:text-white text-3xl font-bold p-2 z-10 focus:outline-none">&times;</button>
-            <img id="lightbox-img" src="" alt="Enlarged render" class="w-auto h-auto max-w-full max-h-[88vh] object-contain border border-neutral-800 shadow-2xl">
+<!-- HEADER -->
+<header>
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="logo" onclick="showTab('about')">
+        <div class="logo-mark">H</div>
+        <div>
+          <div class="logo-name">Hamza</div>
+          <div class="logo-role">Minecraft Thumbnail Artist</div>
         </div>
+      </a>
+      <nav>
+        <button class="nav-btn active" id="nav-about"   onclick="showTab('about')">About</button>
+        <button class="nav-btn"        id="nav-work"    onclick="showTab('work')">Work</button>
+        <button class="nav-btn"        id="nav-contact" onclick="showTab('contact')">Contact</button>
+      </nav>
     </div>
+  </div>
+</header>
 
-    <!-- Footer -->
-    <footer class="border-t border-neutral-200 py-6 text-center text-xs text-neutral-500">
-        © Hamza — Minecraft Thumbnail Designer
-    </footer>
+<main>
 
-    <!-- Tab & Interactivity Logic -->
-    <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  <!-- ═══ ABOUT ═══ -->
+  <div id="tab-about" class="tab active">
+    <div class="wrap">
+      <div class="about-wrap">
 
-            document.getElementById('content-' + tabName).classList.add('active');
-            document.getElementById('tab-' + tabName).classList.add('active');
+        <div class="avail-tag fade-1">
+          <span class="avail-dot"></span>
+          Open for new orders
+        </div>
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        <h1 class="hero-title fade-2">
+          Minecraft thumbnails that actually get clicked.
+        </h1>
 
-        function copyDiscord() {
-            var tempInput = document.createElement("input");
-            tempInput.value = "op_hamm_";
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
+        <p class="hero-body fade-3">
+          I'm <strong>Hamza</strong>. I make custom 3D Minecraft thumbnails — fully rendered in Blender, posed to your video idea, and ready to upload. No templates. Every thumbnail is made from scratch.
+        </p>
 
-            const btn = document.getElementById('copy-btn');
-            btn.innerText = 'Copied Tag!';
-            setTimeout(() => {
-                btn.innerText = 'Copy Discord Tag';
-            }, 2000);
-        }
+        <div class="stats-row fade-3">
+          <div class="stat">
+            <span class="stat-n">50+</span>
+            <div class="stat-l">Thumbnails made</div>
+          </div>
+          <div class="stat">
+            <span class="stat-n dark">100%</span>
+            <div class="stat-l">Custom 3D rigs</div>
+          </div>
+          <div class="stat">
+            <span class="stat-n">24–48h</span>
+            <div class="stat-l">Delivery time</div>
+          </div>
+          <div class="stat">
+            <span class="stat-n dark">4.9★</span>
+            <div class="stat-l">Client rating</div>
+          </div>
+        </div>
 
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.remove('hidden');
-            document.getElementById('lightbox').classList.add('flex');
-        }
+        <div class="btn-row fade-4">
+          <button class="btn-fill" onclick="showTab('work')">
+            <i class="fa-solid fa-images"></i> See my work
+          </button>
+          <button class="btn-line" onclick="showTab('contact')">
+            <i class="fa-brands fa-discord" style="color:#5865F2"></i> Message me
+          </button>
+        </div>
 
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
-            document.getElementById('lightbox').classList.remove('flex');
-        }
-    </script>
+        <div class="divider"></div>
 
+        <h2 class="section-title">How it works</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">Step 1</span>
+            <div class="step-t">Tell me your idea</div>
+            <p class="step-b">Send your video title, what you want in the scene, and your Minecraft skin file.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">Step 2</span>
+            <div class="step-t">I build the 3D scene</div>
+            <p class="step-b">I set up the Blender scene — characters, poses, lighting, and environment — all custom.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">Step 3</span>
+            <div class="step-t">You get the file</div>
+            <p class="step-b">A full 1080p render, ready for YouTube. Revisions included until you're happy.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORK ═══ -->
+  <div id="tab-work" class="tab">
+    <div class="wrap">
+      <div class="work-wrap">
+
+        <div class="work-header">
+          <div>
+            <h1 class="work-title">My Renders</h1>
+            <p class="work-sub">Click any image to see it full size — or test how it looks in a YouTube feed</p>
+          </div>
+          <div class="view-toggle">
+            <button class="tog active" id="tog-gallery" onclick="setView('gallery')">
+              <i class="fa-solid fa-border-all"></i> Gallery
+            </button>
+            <button class="tog" id="tog-yt" onclick="setView('yt')">
+              <i class="fa-brands fa-youtube" style="color:#e00"></i> YT Preview
+            </button>
+          </div>
+        </div>
+
+        <div class="yt-note" id="yt-note">
+          This is how your thumbnail looks inside a real YouTube feed layout.
+        </div>
+        <div class="yt-inp-wrap" id="yt-inp">
+          <label class="yt-inp-label">Test with your own video title:</label>
+          <input type="text" id="yt-title" value="I Survived 100 Days in the Minecraft Void..." oninput="updateTitles(this.value)">
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery" id="view-gallery">
+          <div class="g-card" onclick="openLb('Character_falling_into_the_void_202609041557.jpeg')">
+            <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Minecraft render" onerror="this.src='https://placehold.co/1280x720/EFEBE4/2D5A3D?text=Void+Fall+Render'">
+            <div class="g-overlay"><span>Expand</span></div>
+          </div>
+          <div class="g-card" onclick="openLb('Minecraft_characters_posing_near…_202609032213.jpeg')">
+            <img src="Minecraft_characters_posing_near…_202609032213.jpeg" alt="Minecraft render" onerror="this.src='https://placehold.co/1280x720/EFEBE4/2D5A3D?text=PvP+Scene+Render'">
+            <div class="g-overlay"><span>Expand</span></div>
+          </div>
+          <div class="g-card" onclick="openLb('thumbnail_test.jpeg')">
+            <img src="thumbnail_test.jpeg" alt="Minecraft render" onerror="this.src='https://placehold.co/1280x720/EFEBE4/2D5A3D?text=Survival+Render'">
+            <div class="g-overlay"><span>Expand</span></div>
+          </div>
+        </div>
+
+        <!-- YT feed -->
+        <div class="yt-grid" id="view-yt">
+          <div class="yt-card" onclick="openLb('Character_falling_into_the_void_202609041557.jpeg')">
+            <div class="yt-thumb">
+              <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Render" onerror="this.src='https://placehold.co/1280x720/111/00E5A0?text=Render+1'">
+              <span class="yt-dur">18:24</span>
+            </div>
+            <div class="yt-meta">
+              <div class="yt-av">H</div>
+              <div>
+                <div class="yt-t yt-dyn">I Survived 100 Days in the Minecraft Void...</div>
+                <div class="yt-s">Hamza · 1.2M views · 2 days ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="yt-card" onclick="openLb('Minecraft_characters_posing_near…_202609032213.jpeg')">
+            <div class="yt-thumb">
+              <img src="Minecraft_characters_posing_near…_202609032213.jpeg" alt="Render" onerror="this.src='https://placehold.co/1280x720/111/00E5A0?text=Render+2'">
+              <span class="yt-dur">14:05</span>
+            </div>
+            <div class="yt-meta">
+              <div class="yt-av">H</div>
+              <div>
+                <div class="yt-t yt-dyn">I Survived 100 Days in the Minecraft Void...</div>
+                <div class="yt-s">Hamza · 850K views · 5 days ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="yt-card" onclick="openLb('thumbnail_test.jpeg')">
+            <div class="yt-thumb">
+              <img src="thumbnail_test.jpeg" alt="Render" onerror="this.src='https://placehold.co/1280x720/111/00E5A0?text=Render+3'">
+              <span class="yt-dur">22:11</span>
+            </div>
+            <div class="yt-meta">
+              <div class="yt-av">H</div>
+              <div>
+                <div class="yt-t yt-dyn">I Survived 100 Days in the Minecraft Void...</div>
+                <div class="yt-s">Hamza · 2.4M views · 1 week ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT ═══ -->
+  <div id="tab-contact" class="tab">
+    <div class="wrap">
+      <div class="contact-wrap">
+
+        <h1 class="contact-title">Get in touch</h1>
+        <p class="contact-sub">Message me to place an order or ask any questions.</p>
+
+        <div class="contact-cards">
+
+          <div class="c-card">
+            <div class="c-icon ic-discord"><i class="fa-brands fa-discord"></i></div>
+            <div>
+              <div class="c-platform">Discord — fastest reply</div>
+              <div class="c-handle">op_hamm_</div>
+              <div class="c-desc">Best place for commissions. I usually reply within a few hours.</div>
+            </div>
+            <button class="btn-line" style="justify-content:center" onclick="copyDiscord()">
+              <i class="fa-regular fa-copy"></i> Copy tag
+            </button>
+          </div>
+
+          <div class="c-card">
+            <div class="c-icon ic-yt"><i class="fa-brands fa-youtube"></i></div>
+            <div>
+              <div class="c-platform">YouTube</div>
+              <div class="c-handle">@OpHam01</div>
+              <div class="c-desc">Speed arts, behind-the-scenes, and more of my renders.</div>
+            </div>
+            <a href="https://www.youtube.com/@OpHam01" target="_blank" rel="noopener"
+               class="btn-fill" style="background:#cc0000;justify-content:center">
+              <i class="fa-brands fa-youtube"></i> Subscribe
+            </a>
+          </div>
+
+          <div class="c-card">
+            <div class="c-icon ic-mail"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="c-platform">Email — for business</div>
+              <div class="c-handle" style="font-size:14px">hamzashaikh1823@gmail.com</div>
+              <div class="c-desc">For formal proposals or invoices.</div>
+            </div>
+            <a href="mailto:hamzashaikh1823@gmail.com" class="btn-line" style="justify-content:center">
+              <i class="fa-solid fa-paper-plane"></i> Send email
+            </a>
+          </div>
+
+        </div>
+
+        <div class="checklist">
+          <h3>What to include when you message me</h3>
+          <div class="check-list">
+            <div class="check-item">Your video title or concept idea</div>
+            <div class="check-item">Your Minecraft skin .png file</div>
+            <div class="check-item">Any weapons, armor, or poses you want</div>
+            <div class="check-item">Your upload deadline</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <div class="lb-inner" onclick="event.stopPropagation()">
+    <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lb-img" src="" alt="Enlarged render">
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toast-msg">Copied!</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">© Hamza — Minecraft 3D Thumbnail Art</div>
+</footer>
+
+<script>
+  // Tabs
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Toast
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2400);
+  }
+
+  // Lightbox
+  function openLb(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // Gallery toggle
+  function setView(mode) {
+    const gal  = document.getElementById('view-gallery');
+    const yt   = document.getElementById('view-yt');
+    const note = document.getElementById('yt-note');
+    const inp  = document.getElementById('yt-inp');
+    const tG   = document.getElementById('tog-gallery');
+    const tY   = document.getElementById('tog-yt');
+
+    if (mode === 'yt') {
+      gal.style.display  = 'none';
+      yt.style.display   = 'grid';
+      note.style.display = 'block';
+      inp.style.display  = 'block';
+      tG.classList.remove('active');
+      tY.classList.add('active');
+    } else {
+      gal.style.display  = 'grid';
+      yt.style.display   = 'none';
+      note.style.display = 'none';
+      inp.style.display  = 'none';
+      tY.classList.remove('active');
+      tG.classList.add('active');
+    }
+  }
+
+  function updateTitles(v) {
+    const t = v.trim() || 'I Survived 100 Days in the Minecraft Void...';
+    document.querySelectorAll('.yt-dyn').forEach(el => el.textContent = t);
+  }
+
+  // Contact
+  function copyDiscord() {
+    const tag = 'op_hamm_';
+    navigator.clipboard?.writeText(tag).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = tag; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+    toast('Discord tag copied!');
+  }
+</script>
 </body>
 </html>
