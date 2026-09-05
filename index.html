@@ -62,7 +62,7 @@ body {
 .fade-1 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
 .fade-2 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
 .fade-3 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both; }
-.fade-4 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+.fade-4 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
 
 /* ── HEADER ── */
 header {
@@ -496,23 +496,21 @@ footer {
       ]
     },
     {
-      id: 'crown',
-      title: 'I Built a Massive Golden Throne in Minecraft Survival!',
-      dur: '24:10',
+      id: 'stealth',
+      title: 'Hiding From Full Netherite Players in Minecraft Survival!',
+      dur: '21:15',
       sources: [
-        "/mnt/user-data/uploads/Character_sitting_on_gold_crown_2K_202609051941.png",
-        "/mnt/user-data/uploads/Character_sitting_on_gold_crown_2K_202609051941.jpeg",
-        "/mnt/user-data/uploads/Character_sitting_on_gold_crown_2K_202609051941.jpg",
-        "Character_sitting_on_gold_crown_2K_202609051941.png",
-        "Character_sitting_on_gold_crown_2K_202609051941.jpeg",
-        "Character_sitting_on_gold_crown_2K_202609051941.jpg"
+        "/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpeg",
+        "2026-09-05_20.52.02.png_202609052055.jpeg",
+        "/mnt/user-data/uploads/2026-09-05_20.52.02.png",
+        "2026-09-05_20.52.02.png"
       ]
     }
   ];
 
   let currentActiveSrcs = {
     void: renderItems[0].sources[0],
-    crown: renderItems[1].sources[0]
+    stealth: renderItems[1].sources[0]
   };
 
   function handleImageFallback(img) {
@@ -530,7 +528,7 @@ footer {
       if (parent && !parent.querySelector('.render-svg-fallback')) {
         const svgContainer = document.createElement('div');
         svgContainer.className = 'render-svg-fallback';
-        svgContainer.innerHTML = itemKey === 'crown' ? getCrownRenderSVG() : getVoidRenderSVG();
+        svgContainer.innerHTML = itemKey === 'stealth' ? getStealthRenderSVG() : getVoidRenderSVG();
         parent.appendChild(svgContainer);
       }
     }
@@ -578,20 +576,24 @@ footer {
     </svg>`;
   }
 
-  function getCrownRenderSVG() {
+  function getStealthRenderSVG() {
     return `<svg viewBox="0 0 1200 675" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#f97316"/>
-          <stop offset="50%" stop-color="#fbbf24"/>
-          <stop offset="100%" stop-color="#38bdf8"/>
+        <linearGradient id="forestSky" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#38bdf8"/>
+          <stop offset="60%" stop-color="#bae6fd"/>
+          <stop offset="100%" stop-color="#e0f2fe"/>
         </linearGradient>
       </defs>
-      <rect width="1200" height="675" fill="url(#sky)"/>
-      <rect x="0" y="420" width="1200" height="255" fill="#475569"/>
-      <path d="M 100 200 L 300 200 L 300 420 L 100 420 Z" fill="#64748b"/>
-      <rect x="650" y="180" width="180" height="240" fill="#eab308"/>
-      <rect x="710" y="210" width="60" height="60" fill="#1e293b"/>
+      <rect width="1200" height="675" fill="url(#forestSky)"/>
+      <rect x="0" y="380" width="1200" height="295" fill="#4ea128"/>
+      <!-- Tree -->
+      <rect x="70" y="100" width="180" height="575" fill="#735238"/>
+      <!-- Hiding Character -->
+      <rect x="15" y="220" width="80" height="380" fill="#18181b" rx="6"/>
+      <!-- Armored Chasers -->
+      <rect x="520" y="280" width="70" height="150" fill="#3f3f46"/>
+      <rect x="800" y="260" width="70" height="160" fill="#0284c7"/>
     </svg>`;
   }
 
@@ -843,13 +845,13 @@ footer {
             </div>
           </div>
 
-          <!-- Render 2: Golden Crown / Throne -->
-          <div class="g-card-item" onclick="openLb('crown')">
+          <!-- Render 2: Hiding Behind Tree -->
+          <div class="g-card-item" onclick="openLb('stealth')">
             <div class="g-img-wrap">
-              <img src="/mnt/user-data/uploads/Character_sitting_on_gold_crown_2K_202609051941.png" 
-                   data-key="crown"
+              <img src="/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpeg" 
+                   data-key="stealth"
                    onerror="handleImageFallback(this)" 
-                   alt="Minecraft 3D render — character sitting on golden throne in castle town">
+                   alt="Minecraft 3D render — character hiding behind tree from players">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
@@ -875,20 +877,20 @@ footer {
             </div>
           </div>
 
-          <!-- YT Card 2: Golden Crown -->
-          <div class="yt-card-item" onclick="openLb('crown')">
+          <!-- YT Card 2: Hiding Render -->
+          <div class="yt-card-item" onclick="openLb('stealth')">
             <div class="yt-thumb">
-              <img src="/mnt/user-data/uploads/Character_sitting_on_gold_crown_2K_202609051941.png" 
-                   data-key="crown"
+              <img src="/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpeg" 
+                   data-key="stealth"
                    onerror="handleImageFallback(this)" 
                    alt="Render 2">
-              <span class="yt-dur">24:10</span>
+              <span class="yt-dur">21:15</span>
             </div>
             <div class="yt-meta">
               <div class="yt-av">H</div>
               <div>
-                <div class="yt-t">I Built a Massive Golden Throne in Minecraft Survival!</div>
-                <div class="yt-s">Hamza · 850K views · 5 days ago</div>
+                <div class="yt-t">Hiding From Full Netherite Players in Minecraft Survival!</div>
+                <div class="yt-s">Hamza · 920K views · 3 days ago</div>
               </div>
             </div>
           </div>
