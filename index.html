@@ -30,10 +30,7 @@
   --sans-ui:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --shadow-sm: 0 2px 8px rgba(26,23,20,0.04);
   --shadow-md: 0 8px 24px rgba(26,23,20,0.08);
-  --shadow-lg: 0 16px 36px rgba(26,23,20,0.12);
-  --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
 }
 
 html { scroll-behavior: smooth; }
@@ -54,15 +51,6 @@ body {
   margin: 0 auto;
   padding: 0 24px;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-1 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
-.fade-2 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
-.fade-3 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both; }
-.fade-4 { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
 
 /* HEADER */
 header {
@@ -86,16 +74,11 @@ header {
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif-display);
   font-weight: 900; color: #fff; font-size: 18px;
-  box-shadow: 0 4px 12px rgba(45,90,61,0.25);
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
 }
-.logo:hover .logo-mark { transform: scale(1.05); }
 .logo-name {
   font-family: var(--serif-display);
   font-weight: 700; font-size: 17px;
-  color: var(--text); letter-spacing: 0.01em;
-  line-height: 1.2;
+  color: var(--text); line-height: 1.2;
 }
 .logo-role {
   font-size: 11px; color: var(--muted);
@@ -110,7 +93,7 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
   transition: all 0.2s ease;
 }
 .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.6); }
-.nav-btn.active { color: #fff; background: var(--accent); font-weight: 600; box-shadow: 0 2px 6px rgba(45,90,61,0.2); }
+.nav-btn.active { color: #fff; background: var(--accent); font-weight: 600; }
 
 /* TABS */
 .tab { display: none; }
@@ -122,383 +105,100 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
 .avail-tag {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 13px; font-family: var(--sans-ui); font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-light);
+  color: var(--accent); background: var(--accent-light);
   border: 1px solid var(--accent-border);
-  padding: 5px 14px; border-radius: 99px;
-  margin-bottom: 24px;
+  padding: 5px 14px; border-radius: 99px; margin-bottom: 24px;
 }
 .avail-dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--accent); flex-shrink: 0;
-  box-shadow: 0 0 8px var(--accent);
-  animation: blink 2.5s ease-in-out infinite;
-}
-@keyframes blink {
-  0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.85); }
+  background: var(--accent);
 }
 
 .hero-title {
   font-family: var(--serif-display);
   font-weight: 900;
   font-size: clamp(38px, 5.5vw, 60px);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  max-width: 720px;
-  margin-bottom: 22px;
+  line-height: 1.08; color: var(--text);
+  max-width: 720px; margin-bottom: 22px;
 }
-.hero-title span {
-  color: var(--accent);
-  font-style: italic;
-}
+.hero-title span { color: var(--accent); font-style: italic; }
 
-.hero-body {
-  font-size: 18px; color: var(--muted);
-  max-width: 580px; line-height: 1.7;
-  margin-bottom: 36px;
-}
-.hero-body strong { color: var(--text); font-weight: 600; }
+.hero-body { font-size: 18px; color: var(--muted); max-width: 580px; margin-bottom: 36px; }
 
-/* Stats Grid */
 .stats-row {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md); overflow: hidden;
-  margin-bottom: 38px;
-  background: var(--surface-card);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  overflow: hidden; margin-bottom: 38px; background: var(--surface-card);
 }
-.stat {
-  padding: 20px;
-  border-right: 1px solid var(--border);
-  text-align: center;
-}
+.stat { padding: 20px; border-right: 1px solid var(--border); text-align: center; }
 .stat:last-child { border-right: none; }
-.stat-n {
-  font-family: var(--serif-display);
-  font-weight: 900; font-size: 28px;
-  color: var(--accent); display: block; line-height: 1.1;
-}
-.stat-n.dark { color: var(--text); }
-.stat-l { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: var(--sans-ui); font-weight: 500; }
+.stat-n { font-family: var(--serif-display); font-weight: 900; font-size: 28px; color: var(--accent); display: block; }
+.stat-l { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: var(--sans-ui); }
 
 /* About Gallery Showcase */
 .about-showcase {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  margin-top: 40px; margin-bottom: 40px;
+  display: flex; flex-direction: column; gap: 24px;
 }
 .about-img-card {
-  width: 100%;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--surface-card);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  width: 100%; border-radius: var(--radius-md);
+  overflow: hidden; border: 1px solid var(--border);
+  background: var(--surface-card); cursor: pointer;
+  transition: transform 0.25s ease;
 }
-.about-img-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
-.about-img-card img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  display: block;
-}
+.about-img-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.about-img-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
 
 /* Buttons */
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
-
 .btn-fill {
   display: inline-flex; align-items: center; gap: 9px;
   background: var(--accent); color: #fff;
   font-family: var(--sans-ui); font-size: 14px; font-weight: 600;
   padding: 12px 22px; border-radius: 99px; border: none;
-  cursor: pointer; transition: all 0.2s ease;
-  text-decoration: none; box-shadow: 0 4px 14px rgba(45,90,61,0.22);
+  cursor: pointer; text-decoration: none;
 }
-.btn-fill:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(45,90,61,0.3); }
-
 .btn-line {
   display: inline-flex; align-items: center; gap: 9px;
   background: var(--surface-card); color: var(--text);
   font-family: var(--sans-ui); font-size: 14px; font-weight: 600;
-  padding: 12px 22px; border-radius: 99px;
-  border: 1px solid var(--border);
-  cursor: pointer; transition: all 0.2s ease;
-  text-decoration: none; box-shadow: var(--shadow-sm);
+  padding: 12px 22px; border-radius: 99px; border: 1px solid var(--border);
+  cursor: pointer; text-decoration: none;
 }
-.btn-line:hover { background: var(--surface); border-color: #c8c2ba; transform: translateY(-1px); }
-
-/* Process */
-.divider {
-  height: 1px; background: var(--border);
-  margin: 60px 0;
-}
-
-.section-title {
-  font-family: var(--serif-display);
-  font-weight: 700; font-size: 28px;
-  color: var(--text); margin-bottom: 8px;
-}
-
-.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-
-.step {
-  background: var(--surface-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 24px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, border-color 0.2s;
-}
-.step:hover { transform: translateY(-3px); border-color: var(--accent-border); }
-.step-num {
-  font-family: var(--sans-ui);
-  font-weight: 800; font-size: 12px;
-  color: var(--accent); margin-bottom: 12px;
-  display: inline-block; letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--accent-light); padding: 3px 10px; border-radius: 6px;
-}
-.step-t {
-  font-family: var(--serif-display);
-  font-weight: 700; font-size: 18px;
-  color: var(--text); margin-bottom: 8px;
-}
-.step-b { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
 /* WORK TAB */
 .work-wrap { padding: 50px 0 80px; }
-
-.work-header {
-  display: flex; align-items: flex-end;
-  justify-content: space-between; flex-wrap: wrap;
-  gap: 16px; margin-bottom: 24px;
-}
-.work-title {
-  font-family: var(--serif-display);
-  font-weight: 900; font-size: clamp(30px,4vw,44px);
-  color: var(--text); line-height: 1.1;
-}
+.work-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+.work-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(30px,4vw,44px); color: var(--text); }
 .work-sub { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 6px; }
 
-.view-toggle {
-  display: flex; gap: 4px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 4px;
-}
-.tog {
-  font-size: 12px; font-family: var(--sans-ui); font-weight: 600;
-  padding: 8px 14px; border-radius: 7px; border: none;
-  cursor: pointer; color: var(--muted); background: transparent;
-  transition: all 0.2s ease; display: flex; align-items: center; gap: 6px;
-}
-.tog.active { background: var(--accent); color: #fff; box-shadow: 0 2px 6px rgba(45,90,61,0.25); }
+.view-toggle { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
+.tog { font-size: 12px; font-family: var(--sans-ui); font-weight: 600; padding: 8px 14px; border-radius: 7px; border: none; cursor: pointer; color: var(--muted); background: transparent; }
+.tog.active { background: var(--accent); color: #fff; }
 
-/* Gallery Container */
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%;
-}
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
+.g-card-item { width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); cursor: pointer; position: relative; background: var(--surface-card); }
+.g-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.g-card-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.g-card-item {
-  width: 100%;
-  border-radius: var(--radius-md); overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: pointer; position: relative; background: var(--surface-card);
-  transition: all 0.25s ease; box-shadow: var(--shadow-sm);
-}
-.g-card-item:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.g-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #07050e; }
-.g-card-item img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform 0.4s ease;
-}
-.g-card-item:hover img { transform: scale(1.03); }
-
-.g-overlay {
-  position: absolute; inset: 0;
-  background: rgba(10,8,6,0.45);
-  opacity: 0; transition: opacity 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 5;
-}
-.g-card-item:hover .g-overlay { opacity: 1; }
-.g-overlay span {
-  font-size: 13px; color: #fff; font-weight: 600;
-  font-family: var(--sans-ui);
-  background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 8px 18px; border-radius: 99px; display: flex; align-items: center; gap: 6px;
-}
-
-/* YT preview */
-.yt-note {
-  font-size: 13px; color: var(--accent); font-style: italic;
-  background: var(--accent-light); border: 1px solid var(--accent-border);
-  border-radius: 8px; padding: 10px 16px; margin-bottom: 16px;
-  display: none;
-}
-.yt-inp-wrap {
-  margin-bottom: 24px; display: none;
-}
-.yt-inp-label { font-size: 12px; color: var(--muted); font-style: italic; display: block; margin-bottom: 6px; font-family: var(--sans-ui); }
-.yt-inp-wrap input {
-  width: 100%; max-width: 580px;
-  background: #fff; border: 1px solid var(--border);
-  border-radius: 8px; padding: 10px 16px;
-  font-size: 14px; font-family: var(--sans-ui);
-  color: var(--text); outline: none;
-  transition: border-color 0.18s;
-  box-shadow: var(--shadow-sm);
-}
-.yt-inp-wrap input:focus { border-color: var(--accent); }
-
-.yt-grid-wrap {
-  display: none; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%;
-}
-.yt-card-item {
-  background: #0f0f0f; border-radius: 12px; overflow: hidden; cursor: pointer;
-  width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.2s ease;
-}
-.yt-card-item:hover { transform: scale(1.015); }
-.yt-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #07050e; }
-.yt-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.yt-dur {
-  position: absolute; bottom: 8px; right: 8px; z-index: 6;
-  background: rgba(0,0,0,0.85); color: #fff;
-  font-size: 11px; font-family: monospace; font-weight: 700;
-  padding: 2px 6px; border-radius: 4px;
-}
-.yt-meta { display: flex; gap: 12px; padding: 14px 16px; background: #0f0f0f; }
-.yt-av {
-  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-  background: var(--accent); display: flex; align-items: center;
-  justify-content: center; font-weight: 700; color: #fff; font-size: 14px;
-}
-.yt-t {
-  font-size: 13px; font-weight: 600; color: #f1f1f1;
-  font-family: var(--sans-ui);
-  line-height: 1.4; margin-bottom: 4px;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.yt-s { font-size: 11px; color: #aaa; font-family: var(--sans-ui); }
+/* LIGHTBOX */
+.lb { position: fixed; inset: 0; z-index: 100; background: rgba(10,8,6,0.94); display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(10px); }
+.lb.open { display: flex; }
+.lb-inner { position: relative; max-width: 1100px; width: 100%; display: flex; justify-content: center; }
+.lb img { width: 100%; max-height: 88vh; object-fit: contain; border-radius: 8px; display: block; }
+.lb-close { position: absolute; top: -46px; right: 0; background: none; border: none; cursor: pointer; color: #ccc; font-size: 24px; }
 
 /* CONTACT TAB */
 .contact-wrap { padding: 50px 0 80px; }
-.contact-title {
-  font-family: var(--serif-display);
-  font-weight: 900; font-size: clamp(28px,4vw,42px);
-  color: var(--text); margin-bottom: 8px;
-}
-.contact-sub { font-size: 15px; color: var(--muted); font-style: italic; margin-bottom: 40px; }
+.contact-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(28px,4vw,42px); color: var(--text); }
+.contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; margin-top: 24px; }
+.c-card { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
 
-.contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
-
-.c-card {
-  background: var(--surface-card); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 24px;
-  display: flex; flex-direction: column; gap: 16px;
-  box-shadow: var(--shadow-sm);
-}
-.c-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-}
-.ic-discord { background: #eef0ff; color: var(--discord-blue); }
-.ic-yt      { background: #fff0f0; color: var(--yt-red); }
-.ic-mail    { background: var(--accent-light); color: var(--accent); }
-
-.c-platform { font-size: 12px; color: var(--muted); font-style: italic; font-family: var(--sans-ui); }
-.c-handle {
-  font-family: var(--serif-display);
-  font-weight: 700; font-size: 18px; color: var(--text);
-  margin: 2px 0 4px;
-}
-.c-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
-
-.checklist {
-  background: var(--surface-card); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm);
-}
-.checklist h3 {
-  font-family: var(--serif-display);
-  font-weight: 700; font-size: 18px; color: var(--text);
-  margin-bottom: 16px;
-}
-.check-list { display: flex; flex-direction: column; gap: 10px; }
-.check-item {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 14px; color: var(--muted); font-family: var(--sans-ui);
-}
-.check-item::before {
-  content: '';
-  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
-  background: var(--accent-light);
-  border: 1px solid var(--accent-border);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%232D5A3D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-size: 9px 7px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* LIGHTBOX */
-.lb {
-  position: fixed; inset: 0; z-index: 100;
-  background: rgba(10,8,6,0.94);
-  display: none; align-items: center; justify-content: center;
-  padding: 24px;
-  backdrop-filter: blur(10px);
-}
-.lb.open { display: flex; }
-.lb-inner { position: relative; max-width: 1100px; width: 100%; display: flex; justify-content: center; }
-.lb img { width: 100%; max-height: 88vh; object-fit: contain; border-radius: 8px; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-.lb-close {
-  position: absolute; top: -46px; right: 0;
-  background: none; border: none; cursor: pointer;
-  color: #ccc; font-size: 24px; transition: color 0.18s; z-index: 101;
-}
-.lb-close:hover { color: #fff; }
-
-/* TOAST */
-.toast {
-  position: fixed; bottom: 24px; right: 24px; z-index: 200;
-  background: var(--accent); color: #fff;
-  font-size: 13px; font-family: var(--sans-ui); font-weight: 500;
-  padding: 12px 20px; border-radius: 10px;
-  display: flex; align-items: center; gap: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  transform: translateY(70px); opacity: 0;
-  transition: transform 0.28s ease, opacity 0.28s ease;
-  pointer-events: none;
-}
-.toast.show { transform: translateY(0); opacity: 1; }
-
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 32px 0; text-align: center;
-  font-size: 13px; color: var(--muted); font-style: italic;
-  margin-top: 40px;
-}
+footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 13px; color: var(--muted); font-style: italic; }
 
 @media (max-width: 768px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .stat { border-bottom: 1px solid var(--border); }
-  .stat:nth-child(2) { border-right: none; }
-  .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
-  .steps, .contact-cards, .gallery-grid, .yt-grid-wrap { grid-template-columns: 1fr; }
-}
-@media (max-width: 480px) {
-  .nav-btn { font-size: 12px; padding: 6px 10px; }
-  .logo-role { display: none; }
+  .contact-cards, .gallery-grid { grid-template-columns: 1fr; }
 }
 </style>
 
@@ -511,90 +211,25 @@ footer {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function toast(msg) {
-    const el = document.getElementById('toast');
-    document.getElementById('toast-msg').textContent = msg;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2400);
-  }
-
   function openLb(src) {
-    const lbImg = document.getElementById('lb-img');
-    lbImg.src = src;
+    document.getElementById('lb-img').src = src;
     document.getElementById('lb').classList.add('open');
-    document.body.style.overflow = 'hidden';
   }
-  
   function closeLb() {
     document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-
-  function setView(mode) {
-    const gal  = document.getElementById('view-gallery');
-    const yt   = document.getElementById('view-yt');
-    const note = document.getElementById('yt-note');
-    const inp  = document.getElementById('yt-inp');
-    const tG   = document.getElementById('tog-gallery');
-    const tY   = document.getElementById('tog-yt');
-
-    if (mode === 'yt') {
-      gal.style.display  = 'none';
-      yt.style.display   = 'grid';
-      note.style.display = 'block';
-      inp.style.display  = 'block';
-      tG.classList.remove('active');
-      tY.classList.add('active');
-    } else {
-      gal.style.display  = 'grid';
-      yt.style.display   = 'none';
-      note.style.display = 'none';
-      inp.style.display  = 'none';
-      tY.classList.remove('active');
-      tG.classList.add('active');
-    }
-  }
-
-  function updateTitles(v) {
-    const t = v.trim() || 'I Survived 100 Days in the Minecraft Void...';
-    document.querySelectorAll('.yt-dyn-void').forEach(el => el.textContent = t);
-  }
-
-  function copyDiscord() {
-    copyTextToClipboard('op_hamm_', 'Discord tag copied!');
-  }
-
-  function sendEmail(e) {
-    if (e) e.preventDefault();
-    const email = 'hamzashaikh1823@gmail.com';
-    copyTextToClipboard(email, 'Email copied to clipboard!');
-    setTimeout(() => { window.location.href = 'mailto:' + email; }, 100);
-  }
-
-  function copyTextToClipboard(text, msg) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => { toast(msg); }).catch(() => { fallbackCopy(text, msg); });
-    } else {
-      fallbackCopy(text, msg);
-    }
-  }
-
-  function fallbackCopy(text, msg) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    toast(msg || 'Copied to clipboard!');
   }
 </script>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- REPLACE THESE THREE VARIABLES WITH YOUR DIRECT IMAGE URLS -->
+<script>
+  const IMAGE_1 = "PASTE_YOUR_IMAGE_1_URL_HERE";
+  const IMAGE_2 = "PASTE_YOUR_IMAGE_2_URL_HERE";
+  const IMAGE_3 = "PASTE_YOUR_IMAGE_3_URL_HERE";
+</script>
+
 <header>
   <div class="wrap">
     <div class="nav-inner">
@@ -606,263 +241,99 @@ footer {
         </div>
       </a>
       <nav>
-        <button class="nav-btn active" id="nav-about"   onclick="showTab('about')">About</button>
-        <button class="nav-btn"        id="nav-work"    onclick="showTab('work')">Work</button>
-        <button class="nav-btn"        id="nav-contact" onclick="showTab('contact')">Contact</button>
+        <button class="nav-btn active" id="nav-about" onclick="showTab('about')">About</button>
+        <button class="nav-btn" id="nav-work" onclick="showTab('work')">Work</button>
+        <button class="nav-btn" id="nav-contact" onclick="showTab('contact')">Contact</button>
       </nav>
     </div>
   </div>
 </header>
 
 <main>
-
-  <!-- ABOUT -->
+  <!-- ABOUT TAB -->
   <div id="tab-about" class="tab active">
     <div class="wrap">
       <div class="about-wrap">
+        <div class="avail-tag"><span class="avail-dot"></span> Open for new orders</div>
+        <h1 class="hero-title">Minecraft thumbnails that <span>actually</span> get clicked.</h1>
+        <p class="hero-body">I'm <strong>Hamza</strong>. I make custom 3D Minecraft thumbnails — fully rendered in Blender and tailored to your video concept.</p>
 
-        <div class="avail-tag fade-1">
-          <span class="avail-dot"></span>
-          Open for new orders
+        <div class="stats-row">
+          <div class="stat"><span class="stat-n">10+</span><div class="stat-l">Thumbnails made</div></div>
+          <div class="stat"><span class="stat-n" style="color:var(--text)">100%</span><div class="stat-l">Custom 3D rigs</div></div>
+          <div class="stat"><span class="stat-n">24–48h</span><div class="stat-l">Delivery time</div></div>
+          <div class="stat"><span class="stat-n" style="color:var(--text)">4.9★</span><div class="stat-l">Client rating</div></div>
         </div>
 
-        <h1 class="hero-title fade-2">
-          Minecraft thumbnails that <span>actually</span> get clicked.
-        </h1>
-
-        <p class="hero-body fade-3">
-          I'm <strong>Hamza</strong>. I make custom 3D Minecraft thumbnails — fully rendered in Blender, posed to your video idea, and ready to upload. No templates. Every thumbnail is made from scratch.
-        </p>
-
-        <div class="stats-row fade-3">
-          <div class="stat">
-            <span class="stat-n">10+</span>
-            <div class="stat-l">Thumbnails made</div>
+        <!-- MAIN 3 IMAGES -->
+        <div class="about-showcase">
+          <div class="about-img-card" onclick="openLb(IMAGE_1)">
+            <img src="PASTE_YOUR_IMAGE_1_URL_HERE" alt="Render 1">
           </div>
-          <div class="stat">
-            <span class="stat-n dark">100%</span>
-            <div class="stat-l">Custom 3D rigs</div>
+          <div class="about-img-card" onclick="openLb(IMAGE_2)">
+            <img src="PASTE_YOUR_IMAGE_2_URL_HERE" alt="Render 2">
           </div>
-          <div class="stat">
-            <span class="stat-n">24–48h</span>
-            <div class="stat-l">Delivery time</div>
-          </div>
-          <div class="stat">
-            <span class="stat-n dark">4.9★</span>
-            <div class="stat-l">Client rating</div>
+          <div class="about-img-card" onclick="openLb(IMAGE_3)">
+            <img src="PASTE_YOUR_IMAGE_3_URL_HERE" alt="Render 3">
           </div>
         </div>
 
-        <!-- ABOUT GALLERY SHOWCASE -->
-        <div class="about-showcase fade-3">
-          <div class="about-img-card" onclick="openLb('/render1.jpg')">
-            <img src="/render1.jpg" alt="Minecraft Render 1">
-          </div>
-          <div class="about-img-card" onclick="openLb('/render2.jpg')">
-            <img src="/render2.jpg" alt="Minecraft Render 2">
-          </div>
-          <div class="about-img-card" onclick="openLb('/render3.jpg')">
-            <img src="/render3.jpg" alt="Minecraft Render 3">
-          </div>
+        <div class="btn-row">
+          <button class="btn-fill" onclick="showTab('work')"><i class="fa-solid fa-images"></i> See my work</button>
+          <button class="btn-line" onclick="showTab('contact')"><i class="fa-brands fa-discord" style="color:var(--discord-blue)"></i> Message me</button>
         </div>
-
-        <div class="btn-row fade-4">
-          <button class="btn-fill" onclick="showTab('work')">
-            <i class="fa-solid fa-images"></i> See my work
-          </button>
-          <button class="btn-line" onclick="showTab('contact')">
-            <i class="fa-brands fa-discord" style="color:var(--discord-blue)"></i> Message me
-          </button>
-        </div>
-
-        <div class="divider"></div>
-
-        <h2 class="section-title">How it works</h2>
-        <div class="steps">
-          <div class="step">
-            <span class="step-num">Step 1</span>
-            <div class="step-t">Tell me your idea</div>
-            <p class="step-b">Send your video title, what you want in the scene, and your Minecraft skin file.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">Step 2</span>
-            <div class="step-t">I build the 3D scene</div>
-            <p class="step-b">I set up the Blender scene — characters, poses, lighting, and environment — all custom.</p>
-          </div>
-          <div class="step">
-            <span class="step-num">Step 3</span>
-            <div class="step-t">You get the file</div>
-            <p class="step-b">A full 1080p render, ready for YouTube. Revisions included until you're happy.</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- WORK -->
+  <!-- WORK TAB -->
   <div id="tab-work" class="tab">
     <div class="wrap">
       <div class="work-wrap">
-
         <div class="work-header">
           <div>
             <h1 class="work-title">My Renders</h1>
-            <p class="work-sub">Click any image to inspect full size — or test how it looks in a YouTube feed</p>
-          </div>
-          <div class="view-toggle">
-            <button class="tog active" id="tog-gallery" onclick="setView('gallery')">
-              <i class="fa-solid fa-border-all"></i> Gallery
-            </button>
-            <button class="tog" id="tog-yt" onclick="setView('yt')">
-              <i class="fa-brands fa-youtube" style="color:var(--yt-red)"></i> YT Preview
-            </button>
+            <p class="work-sub">Click any image to inspect full size</p>
           </div>
         </div>
 
-        <div class="yt-note" id="yt-note">
-          This is how your thumbnails look inside a real YouTube feed layout.
-        </div>
-        <div class="yt-inp-wrap" id="yt-inp">
-          <label class="yt-inp-label">Test with your own video title for render 1:</label>
-          <input type="text" id="yt-title" value="I Survived 100 Days in the Minecraft Void..." oninput="updateTitles(this.value)">
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" id="view-gallery">
-          <div class="g-card-item" onclick="openLb('/render1.jpg')">
-            <div class="g-img-wrap">
-              <img src="/render1.jpg" alt="Minecraft Render 1">
-              <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
-            </div>
+        <div class="gallery-grid">
+          <div class="g-card-item" onclick="openLb(IMAGE_1)">
+            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_1_URL_HERE" alt="Render 1"></div>
           </div>
-
-          <div class="g-card-item" onclick="openLb('/render2.jpg')">
-            <div class="g-img-wrap">
-              <img src="/render2.jpg" alt="Minecraft Render 2">
-              <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
-            </div>
+          <div class="g-card-item" onclick="openLb(IMAGE_2)">
+            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_2_URL_HERE" alt="Render 2"></div>
           </div>
-
-          <div class="g-card-item" onclick="openLb('/render3.jpg')">
-            <div class="g-img-wrap">
-              <img src="/render3.jpg" alt="Minecraft Render 3">
-              <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
-            </div>
+          <div class="g-card-item" onclick="openLb(IMAGE_3)">
+            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_3_URL_HERE" alt="Render 3"></div>
           </div>
         </div>
-
-        <!-- YT Feed Grid -->
-        <div class="yt-grid-wrap" id="view-yt">
-          <div class="yt-card-item" onclick="openLb('/render1.jpg')">
-            <div class="yt-thumb">
-              <img src="/render1.jpg" alt="Render 1">
-              <span class="yt-dur">18:24</span>
-            </div>
-            <div class="yt-meta">
-              <div class="yt-av">H</div>
-              <div>
-                <div class="yt-t yt-dyn-void">I Survived 100 Days in the Minecraft Void...</div>
-                <div class="yt-s">Hamza · 1.2M views · 2 days ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="yt-card-item" onclick="openLb('/render2.jpg')">
-            <div class="yt-thumb">
-              <img src="/render2.jpg" alt="Render 2">
-              <span class="yt-dur">21:15</span>
-            </div>
-            <div class="yt-meta">
-              <div class="yt-av">H</div>
-              <div>
-                <div class="yt-t">Hiding From Full Netherite Players in Minecraft Survival!</div>
-                <div class="yt-s">Hamza · 920K views · 3 days ago</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="yt-card-item" onclick="openLb('/render3.jpg')">
-            <div class="yt-thumb">
-              <img src="/render3.jpg" alt="Render 3">
-              <span class="yt-dur">14:50</span>
-            </div>
-            <div class="yt-meta">
-              <div class="yt-av">H</div>
-              <div>
-                <div class="yt-t">I Built a Secret Minecraft Disco Club!</div>
-                <div class="yt-s">Hamza · 540K views · 5 days ago</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- CONTACT TAB -->
   <div id="tab-contact" class="tab">
     <div class="wrap">
       <div class="contact-wrap">
-
         <h1 class="contact-title">Get in touch</h1>
-        <p class="contact-sub">Message me to place an order or ask any questions.</p>
-
         <div class="contact-cards">
-
           <div class="c-card">
-            <div class="c-icon ic-discord"><i class="fa-brands fa-discord"></i></div>
-            <div>
-              <div class="c-platform">Discord — fastest reply</div>
-              <div class="c-handle">op_hamm_</div>
-              <div class="c-desc">Best place for commissions. I usually reply within a few hours.</div>
-            </div>
-            <button class="btn-line" style="justify-content:center" onclick="copyDiscord()">
-              <i class="fa-regular fa-copy"></i> Copy tag
-            </button>
+            <h3>Discord</h3>
+            <p><strong>op_hamm_</strong></p>
           </div>
-
           <div class="c-card">
-            <div class="c-icon ic-yt"><i class="fa-brands fa-youtube"></i></div>
-            <div>
-              <div class="c-platform">YouTube</div>
-              <div class="c-handle">@OpHam01</div>
-              <div class="c-desc">Speed arts, behind-the-scenes, and more of my renders.</div>
-            </div>
-            <a href="https://www.youtube.com/@OpHam01" target="_blank" rel="noopener" class="btn-fill" style="background:#cc0000;justify-content:center">
-              <i class="fa-brands fa-youtube"></i> Subscribe
-            </a>
+            <h3>YouTube</h3>
+            <p><strong>@OpHam01</strong></p>
           </div>
-
           <div class="c-card">
-            <div class="c-icon ic-mail"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="c-platform">Email — for business</div>
-              <div class="c-handle" style="font-size:14px">hamzashaikh1823@gmail.com</div>
-              <div class="c-desc">For formal proposals or invoices.</div>
-            </div>
-            <a href="mailto:hamzashaikh1823@gmail.com" class="btn-line" style="justify-content:center" onclick="sendEmail(event)">
-              <i class="fa-solid fa-paper-plane"></i> Send email
-            </a>
-          </div>
-
-        </div>
-
-        <div class="checklist">
-          <h3>What to include when you message me</h3>
-          <div class="check-list">
-            <div class="check-item">Your video title or concept idea</div>
-            <div class="check-item">Your Minecraft skin .png file</div>
-            <div class="check-item">Any weapons, armor, or poses you want</div>
-            <div class="check-item">Your upload deadline</div>
+            <h3>Email</h3>
+            <p><strong>hamzashaikh1823@gmail.com</strong></p>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-
 </main>
 
 <!-- LIGHTBOX -->
@@ -873,13 +344,6 @@ footer {
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <i class="fa-solid fa-circle-check"></i>
-  <span id="toast-msg">Copied!</span>
-</div>
-
-<!-- FOOTER -->
 <footer>
   <div class="wrap">© Hamza — Minecraft 3D Thumbnail Art</div>
 </footer>
