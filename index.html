@@ -503,60 +503,6 @@ footer {
 </style>
 
 <script>
-  const renderItems = [
-    {
-      id: 'void',
-      title: 'I Survived 100 Days in the Minecraft Void...',
-      dur: '18:24',
-      sources: [
-        "/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.jpg",
-        "/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.png",
-        "Character_falling_into_the_void_202609041557.jpg",
-        "Character_falling_into_the_void_202609041557.png"
-      ]
-    },
-    {
-      id: 'stealth',
-      title: 'Hiding From Full Netherite Players in Minecraft Survival!',
-      dur: '21:15',
-      sources: [
-        "/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpg",
-        "/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.png",
-        "2026-09-05_20.52.02.png_202609052055.jpg",
-        "2026-09-05_20.52.02.png_202609052055.png"
-      ]
-    },
-    {
-      id: 'party',
-      title: 'I Built a Secret Minecraft Disco Club!',
-      dur: '14:50',
-      sources: [
-        "/mnt/user-data/uploads/2026-09-09_21.47.03.png_2K_202609092204_2.jpg",
-        "/mnt/user-data/uploads/2026-09-09_21.47.03.png_2K_202609092204_2.png",
-        "2026-09-09_21.47.03.png_2K_202609092204_2.jpg",
-        "2026-09-09_21.47.03.png_2K_202609092204_2.png"
-      ]
-    }
-  ];
-
-  let currentActiveSrcs = {
-    void: renderItems[0].sources[0],
-    stealth: renderItems[1].sources[0],
-    party: renderItems[2].sources[0]
-  };
-
-  function handleImageFallback(img) {
-    const itemKey = img.dataset.key || 'void';
-    const item = renderItems.find(r => r.id === itemKey) || renderItems[0];
-    let step = parseInt(img.dataset.step || '0');
-    step++;
-    if (step < item.sources.length) {
-      img.dataset.step = step;
-      img.src = item.sources[step];
-      currentActiveSrcs[itemKey] = item.sources[step];
-    }
-  }
-
   function showTab(name) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -572,10 +518,9 @@ footer {
     setTimeout(() => el.classList.remove('show'), 2400);
   }
 
-  function openLb(key) {
-    const itemKey = key || 'void';
+  function openLb(src) {
     const lbImg = document.getElementById('lb-img');
-    lbImg.src = currentActiveSrcs[itemKey] || currentActiveSrcs.void;
+    lbImg.src = src;
     document.getElementById('lb').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -710,14 +655,14 @@ footer {
 
         <!-- ABOUT GALLERY SHOWCASE -->
         <div class="about-showcase fade-3">
-          <div class="about-img-card" onclick="openLb('void')">
-            <img src="/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.jpg" data-key="void" onerror="handleImageFallback(this)" alt="Render 1">
+          <div class="about-img-card" onclick="openLb('render1.jpg')">
+            <img src="render1.jpg" alt="Render 1">
           </div>
-          <div class="about-img-card" onclick="openLb('stealth')">
-            <img src="/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpg" data-key="stealth" onerror="handleImageFallback(this)" alt="Render 2">
+          <div class="about-img-card" onclick="openLb('render2.jpg')">
+            <img src="render2.jpg" alt="Render 2">
           </div>
-          <div class="about-img-card" onclick="openLb('party')">
-            <img src="/mnt/user-data/uploads/2026-09-09_21.47.03.png_2K_202609092204_2.jpg" data-key="party" onerror="handleImageFallback(this)" alt="Render 3">
+          <div class="about-img-card" onclick="openLb('render3.jpg')">
+            <img src="render3.jpg" alt="Render 3">
           </div>
         </div>
 
@@ -785,23 +730,23 @@ footer {
 
         <!-- Gallery Grid -->
         <div class="gallery-grid" id="view-gallery">
-          <div class="g-card-item" onclick="openLb('void')">
+          <div class="g-card-item" onclick="openLb('render1.jpg')">
             <div class="g-img-wrap">
-              <img src="/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.jpg" data-key="void" onerror="handleImageFallback(this)" alt="Minecraft 3D render — character falling into void">
+              <img src="render1.jpg" alt="Minecraft 3D render — character falling into void">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLb('stealth')">
+          <div class="g-card-item" onclick="openLb('render2.jpg')">
             <div class="g-img-wrap">
-              <img src="/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpg" data-key="stealth" onerror="handleImageFallback(this)" alt="Minecraft 3D render — character hiding behind tree from players">
+              <img src="render2.jpg" alt="Minecraft 3D render — character hiding behind tree from players">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLb('party')">
+          <div class="g-card-item" onclick="openLb('render3.jpg')">
             <div class="g-img-wrap">
-              <img src="/mnt/user-data/uploads/2026-09-09_21.47.03.png_2K_202609092204_2.jpg" data-key="party" onerror="handleImageFallback(this)" alt="Minecraft 3D render — party room disco club">
+              <img src="render3.jpg" alt="Minecraft 3D render — party room disco club">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
@@ -809,9 +754,9 @@ footer {
 
         <!-- YT Feed Grid -->
         <div class="yt-grid-wrap" id="view-yt">
-          <div class="yt-card-item" onclick="openLb('void')">
+          <div class="yt-card-item" onclick="openLb('render1.jpg')">
             <div class="yt-thumb">
-              <img src="/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.jpg" data-key="void" onerror="handleImageFallback(this)" alt="Render 1">
+              <img src="render1.jpg" alt="Render 1">
               <span class="yt-dur">18:24</span>
             </div>
             <div class="yt-meta">
@@ -823,9 +768,9 @@ footer {
             </div>
           </div>
 
-          <div class="yt-card-item" onclick="openLb('stealth')">
+          <div class="yt-card-item" onclick="openLb('render2.jpg')">
             <div class="yt-thumb">
-              <img src="/mnt/user-data/uploads/2026-09-05_20.52.02.png_202609052055.jpg" data-key="stealth" onerror="handleImageFallback(this)" alt="Render 2">
+              <img src="render2.jpg" alt="Render 2">
               <span class="yt-dur">21:15</span>
             </div>
             <div class="yt-meta">
@@ -837,9 +782,9 @@ footer {
             </div>
           </div>
 
-          <div class="yt-card-item" onclick="openLb('party')">
+          <div class="yt-card-item" onclick="openLb('render3.jpg')">
             <div class="yt-thumb">
-              <img src="/mnt/user-data/uploads/2026-09-09_21.47.03.png_2K_202609092204_2.jpg" data-key="party" onerror="handleImageFallback(this)" alt="Render 3">
+              <img src="render3.jpg" alt="Render 3">
               <span class="yt-dur">14:50</span>
             </div>
             <div class="yt-meta">
@@ -924,7 +869,7 @@ footer {
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-inner" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lb-img" src="/mnt/user-data/uploads/Character_falling_into_the_void_202609041557.jpg" data-key="void" onerror="handleImageFallback(this)" alt="Enlarged render">
+    <img id="lb-img" src="render1.jpg" alt="Enlarged render">
   </div>
 </div>
 
