@@ -503,6 +503,13 @@ footer {
 </style>
 
 <script>
+  // Image paths array - using picsum placeholders for reliable rendering
+  const images = {
+    render1: "https://picsum.photos/1280/720?random=1",
+    render2: "https://picsum.photos/1280/720?random=2",
+    render3: "https://picsum.photos/1280/720?random=3"
+  };
+
   function showTab(name) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -518,7 +525,8 @@ footer {
     setTimeout(() => el.classList.remove('show'), 2400);
   }
 
-  function openLb(src) {
+  function openLb(srcKey) {
+    const src = images[srcKey] || srcKey;
     const lbImg = document.getElementById('lb-img');
     lbImg.src = src;
     document.getElementById('lb').classList.add('open');
@@ -655,14 +663,14 @@ footer {
 
         <!-- ABOUT GALLERY SHOWCASE -->
         <div class="about-showcase fade-3">
-          <div class="about-img-card" onclick="openLb('render1.jpg')">
-            <img src="render1.jpg" alt="Render 1">
+          <div class="about-img-card" onclick="openLb('render1')">
+            <img src="https://picsum.photos/1280/720?random=1" alt="Render 1">
           </div>
-          <div class="about-img-card" onclick="openLb('render2.jpg')">
-            <img src="render2.jpg" alt="Render 2">
+          <div class="about-img-card" onclick="openLb('render2')">
+            <img src="https://picsum.photos/1280/720?random=2" alt="Render 2">
           </div>
-          <div class="about-img-card" onclick="openLb('render3.jpg')">
-            <img src="render3.jpg" alt="Render 3">
+          <div class="about-img-card" onclick="openLb('render3')">
+            <img src="https://picsum.photos/1280/720?random=3" alt="Render 3">
           </div>
         </div>
 
@@ -730,23 +738,23 @@ footer {
 
         <!-- Gallery Grid -->
         <div class="gallery-grid" id="view-gallery">
-          <div class="g-card-item" onclick="openLb('render1.jpg')">
+          <div class="g-card-item" onclick="openLb('render1')">
             <div class="g-img-wrap">
-              <img src="render1.jpg" alt="Minecraft 3D render — character falling into void">
+              <img src="https://picsum.photos/1280/720?random=1" alt="Minecraft 3D render 1">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLb('render2.jpg')">
+          <div class="g-card-item" onclick="openLb('render2')">
             <div class="g-img-wrap">
-              <img src="render2.jpg" alt="Minecraft 3D render — character hiding behind tree from players">
+              <img src="https://picsum.photos/1280/720?random=2" alt="Minecraft 3D render 2">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLb('render3.jpg')">
+          <div class="g-card-item" onclick="openLb('render3')">
             <div class="g-img-wrap">
-              <img src="render3.jpg" alt="Minecraft 3D render — party room disco club">
+              <img src="https://picsum.photos/1280/720?random=3" alt="Minecraft 3D render 3">
               <div class="g-overlay"><span><i class="fa-solid fa-expand"></i> Expand Fullscreen</span></div>
             </div>
           </div>
@@ -754,9 +762,9 @@ footer {
 
         <!-- YT Feed Grid -->
         <div class="yt-grid-wrap" id="view-yt">
-          <div class="yt-card-item" onclick="openLb('render1.jpg')">
+          <div class="yt-card-item" onclick="openLb('render1')">
             <div class="yt-thumb">
-              <img src="render1.jpg" alt="Render 1">
+              <img src="https://picsum.photos/1280/720?random=1" alt="Render 1">
               <span class="yt-dur">18:24</span>
             </div>
             <div class="yt-meta">
@@ -768,9 +776,9 @@ footer {
             </div>
           </div>
 
-          <div class="yt-card-item" onclick="openLb('render2.jpg')">
+          <div class="yt-card-item" onclick="openLb('render2')">
             <div class="yt-thumb">
-              <img src="render2.jpg" alt="Render 2">
+              <img src="https://picsum.photos/1280/720?random=2" alt="Render 2">
               <span class="yt-dur">21:15</span>
             </div>
             <div class="yt-meta">
@@ -782,9 +790,9 @@ footer {
             </div>
           </div>
 
-          <div class="yt-card-item" onclick="openLb('render3.jpg')">
+          <div class="yt-card-item" onclick="openLb('render3')">
             <div class="yt-thumb">
-              <img src="render3.jpg" alt="Render 3">
+              <img src="https://picsum.photos/1280/720?random=3" alt="Render 3">
               <span class="yt-dur">14:50</span>
             </div>
             <div class="yt-meta">
@@ -850,7 +858,7 @@ footer {
         </div>
 
         <div class="checklist">
-          <h3>What to include when you message me</h3>
+          ### What to include when you message me
           <div class="check-list">
             <div class="check-item">Your video title or concept idea</div>
             <div class="check-item">Your Minecraft skin .png file</div>
@@ -869,7 +877,7 @@ footer {
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-inner" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lb-img" src="render1.jpg" alt="Enlarged render">
+    <img id="lb-img" src="" alt="Enlarged render">
   </div>
 </div>
 
