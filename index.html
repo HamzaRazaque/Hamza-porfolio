@@ -154,6 +154,19 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
   margin-bottom: 20px;
 }
 
+/* Category Filter Tags */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.filter-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted); font-family: var(--sans-ui); font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 99px; cursor: pointer; transition: all 0.2s ease;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
 .scroll-container {
   display: flex;
   gap: 20px;
@@ -219,6 +232,47 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
   margin-bottom: 20px;
   line-height: 1.8;
 }
+
+/* Before / After Slider Component */
+.ba-section {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow-sm);
+}
+.ba-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  user-select: none;
+}
+.ba-image {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+}
+.ba-overlay {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 50%; overflow: hidden; border-right: 3px solid #fff;
+}
+.ba-overlay img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.ba-slider {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: #fff; cursor: ew-resize; z-index: 10;
+}
+.ba-handle {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--text);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.ba-badge {
+  position: absolute; top: 14px; font-family: var(--sans-ui); font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 5;
+}
+.ba-badge.raw { left: 14px; background: rgba(0,0,0,0.7); color: #fff; }
+.ba-badge.edited { right: 14px; background: var(--accent); color: #fff; }
 
 .why-me-grid {
   display: grid;
@@ -310,6 +364,10 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
   display: flex; justify-content: space-between; align-items: center;
   border-top: 1px solid var(--border);
 }
+.tag-badge {
+  font-family: var(--sans-ui); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+  background: var(--surface); color: var(--muted); border: 1px solid var(--border);
+}
 
 .lb { position: fixed; inset: 0; z-index: 100; background: rgba(10,8,6,0.94); display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(10px); }
 .lb.open { display: flex; }
@@ -340,7 +398,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 @media (max-width: 768px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .contact-cards, .gallery-grid, .why-me-grid { grid-template-columns: 1fr; }
-  .about-details { padding: 24px; }
+  .about-details, .ba-section { padding: 24px; }
   .work-header { flex-direction: column; align-items: flex-start; }
 }
 </style>
@@ -349,133 +407,222 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 <body>
 
 <script>
-  // High-definition HTML5 Canvas Render Generator
-  function createVisualThumbnail(type) {
+  function createVisualThumbnail(type, mode = 'edited') {
     const canvas = document.createElement('canvas');
     canvas.width = 1280;
     canvas.height = 720;
     const ctx = canvas.getContext('2d');
 
+    const isRaw = (mode === 'raw');
+
     if (type === 'wemmbu') {
-      // Dark Castle & Lightning Scene
+      // Dark Castle & Lightning Scene (Wemmbu Style)
       const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
-      bgGrad.addColorStop(0, '#1d052d');
-      bgGrad.addColorStop(0.4, '#481268');
-      bgGrad.addColorStop(0.8, '#260a3a');
+      bgGrad.addColorStop(0, isRaw ? '#12031c' : '#1d052d');
+      bgGrad.addColorStop(0.4, isRaw ? '#2c0a42' : '#5b1585');
+      bgGrad.addColorStop(0.8, isRaw ? '#180524' : '#320b4c');
       bgGrad.addColorStop(1, '#0e0316');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Mountains
-      ctx.fillStyle = '#140520';
+      // Background Mountains with 3D Voxel Steps
+      ctx.fillStyle = isRaw ? '#11041c' : '#180726';
+      for (let i = 0; i < 12; i++) {
+        const h = 160 + (i % 4) * 40;
+        ctx.fillRect(i * 110, 520 - h, 120, h + 200);
+      }
+
+      // 3D Minecraft Castle Towers
+      ctx.fillStyle = '#220b33';
+      ctx.fillRect(160, 180, 160, 400);
+      ctx.fillRect(960, 180, 160, 400);
+      ctx.fillRect(320, 240, 640, 340);
+      ctx.fillRect(480, 120, 320, 150);
+
+      // Castle Wall Cobblestone Shading
+      ctx.fillStyle = '#170624';
+      for (let y = 140; y < 580; y += 40) {
+        for (let x = 160; x < 1120; x += 60) {
+          if ((x + y) % 80 === 0) ctx.fillRect(x, y, 26, 18);
+        }
+      }
+
+      // Glowing Magenta Windows & Portal Arch
+      if (!isRaw) {
+        ctx.shadowColor = '#e879f9';
+        ctx.shadowBlur = 35;
+      }
+      ctx.fillStyle = isRaw ? '#a21caf' : '#f472b6';
+      ctx.fillRect(210, 240, 60, 110);
+      ctx.fillRect(1010, 240, 60, 110);
+      ctx.fillRect(580, 160, 120, 90);
+
+      ctx.fillStyle = isRaw ? '#c084fc' : '#f0abfc';
       ctx.beginPath();
-      ctx.moveTo(0, 500); ctx.lineTo(250, 360); ctx.lineTo(500, 520); ctx.lineTo(800, 340); ctx.lineTo(1280, 550); ctx.lineTo(1280, 720); ctx.lineTo(0, 720);
+      ctx.arc(640, 510, 110, Math.PI, 0, false);
       ctx.fill();
 
-      // Minecraft Castle Structure
-      ctx.fillStyle = '#1c0a2a';
-      ctx.fillRect(180, 200, 140, 380);
-      ctx.fillRect(160, 160, 180, 40);
-      ctx.fillRect(960, 200, 140, 380);
-      ctx.fillRect(940, 160, 180, 40);
-      ctx.fillRect(320, 260, 640, 320);
-      ctx.fillRect(480, 140, 320, 120);
+      // Electric Lightning Arcs
+      ctx.strokeStyle = isRaw ? '#d8b4fe' : '#ffffff';
+      ctx.lineWidth = isRaw ? 4 : 8;
+      if (!isRaw) {
+        ctx.shadowColor = '#d946ef';
+        ctx.shadowBlur = 40;
+      }
+      ctx.beginPath(); ctx.moveTo(140, 0); ctx.lineTo(220, 110); ctx.lineTo(170, 150); ctx.lineTo(280, 310); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(1120, 0); ctx.lineTo(1030, 120); ctx.lineTo(1070, 170); ctx.lineTo(960, 320); ctx.stroke();
 
-      // Glowing Magenta Windows
-      ctx.shadowColor = '#d946ef';
-      ctx.shadowBlur = 25;
-      ctx.fillStyle = '#f472b6';
-      ctx.fillRect(230, 240, 40, 90);
-      ctx.fillRect(1010, 240, 40, 90);
-      ctx.fillRect(420, 320, 60, 120);
-      ctx.fillRect(800, 320, 60, 120);
-      ctx.fillRect(580, 180, 120, 80);
-
-      // Gate Light
-      ctx.fillStyle = '#e879f9';
-      ctx.beginPath();
-      ctx.arc(640, 520, 90, Math.PI, 0, false);
-      ctx.fill();
-
-      // Lightning
-      ctx.strokeStyle = '#f0abfc';
-      ctx.lineWidth = 8;
-      ctx.shadowColor = '#c084fc';
-      ctx.shadowBlur = 35;
-      ctx.beginPath(); ctx.moveTo(140, 0); ctx.lineTo(210, 120); ctx.lineTo(170, 160); ctx.lineTo(260, 300); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(1120, 0); ctx.lineTo(1040, 110); ctx.lineTo(1080, 150); ctx.lineTo(990, 290); ctx.stroke();
-
-      // Foreground & Title Card
+      // 3D Player Character Silhouette with Sword Glow
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#0a0310';
-      ctx.fillRect(0, 540, 1280, 180);
+      ctx.fillStyle = '#0a0312';
+      // Head
+      ctx.fillRect(600, 360, 80, 80);
+      // Body
+      ctx.fillRect(590, 440, 100, 110);
+      // Sword Arc
+      if (!isRaw) {
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 14;
+        ctx.shadowColor = '#0284c7';
+        ctx.shadowBlur = 30;
+        ctx.beginPath(); ctx.arc(690, 420, 80, -Math.PI/3, Math.PI/2); ctx.stroke();
+      }
 
-      ctx.fillStyle = 'rgba(15, 5, 25, 0.85)';
-      ctx.fillRect(240, 520, 800, 130);
-      ctx.strokeStyle = '#d946ef';
-      ctx.lineWidth = 3;
-      ctx.strokeRect(240, 520, 800, 130);
+      // High Contrast Text Banner (Only on final post-processed render)
+      if (!isRaw) {
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = 'rgba(10, 3, 18, 0.88)';
+        ctx.fillRect(220, 530, 840, 135);
+        ctx.strokeStyle = '#e879f9';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(220, 530, 840, 135);
 
-      ctx.font = '900 46px "Playfair Display", Georgia, serif';
-      ctx.fillStyle = '#FFFFFF';
-      ctx.textAlign = 'center';
-      ctx.fillText('PURPLE CASTLE BATTLE', 640, 575);
-      
-      ctx.font = '700 18px "Inter", sans-serif';
-      ctx.fillStyle = '#e879f9';
-      ctx.fillText('WEMMBU STYLE • BLENDER 3D RENDER', 640, 615);
+        ctx.font = '900 48px "Playfair Display", Georgia, serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText('PURPLE CASTLE BATTLE', 640, 588);
+        
+        ctx.font = '700 16px "Inter", sans-serif';
+        ctx.fillStyle = '#e879f9';
+        ctx.fillText('WEMMBU STYLE • BLENDER 3D LIGHTING & FX', 640, 628);
+      }
 
     } else if (type === 'hiding') {
-      // Stealth Village Hunt - Bright Forest
+      // Stealth Village Hunt - Bright Forest & Sunset God Rays
       const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
-      bgGrad.addColorStop(0, '#38bdf8');
-      bgGrad.addColorStop(0.55, '#bae6fd');
+      bgGrad.addColorStop(0, isRaw ? '#0284c7' : '#38bdf8');
+      bgGrad.addColorStop(0.5, isRaw ? '#7dd3fc' : '#bae6fd');
       bgGrad.addColorStop(0.55, '#86efac');
-      bgGrad.addColorStop(1, '#22c55e');
+      bgGrad.addColorStop(1, isRaw ? '#166534' : '#22c55e');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Sun
+      // Sun & God Rays
       ctx.fillStyle = '#fef08a';
-      ctx.shadowColor = '#fef08a';
-      ctx.shadowBlur = 60;
-      ctx.beginPath(); ctx.arc(1100, 120, 90, 0, Math.PI * 2); ctx.fill();
+      if (!isRaw) {
+        ctx.shadowColor = '#fde047';
+        ctx.shadowBlur = 80;
+      }
+      ctx.beginPath(); ctx.arc(1080, 120, 95, 0, Math.PI * 2); ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Tree Trunk
-      ctx.fillStyle = '#733e17';
-      ctx.fillRect(80, 0, 260, 720);
+      if (!isRaw) {
+        // Volumetric Sun Light Rays
+        ctx.fillStyle = 'rgba(254, 240, 138, 0.18)';
+        ctx.beginPath(); ctx.moveTo(1080, 120); ctx.lineTo(0, 500); ctx.lineTo(0, 720); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(1080, 120); ctx.lineTo(400, 720); ctx.lineTo(800, 720); ctx.fill();
+      }
+
+      // 3D Tree Trunk Blocky Shading
       ctx.fillStyle = '#542d10';
-      ctx.fillRect(140, 0, 40, 720);
-      ctx.fillRect(220, 0, 40, 720);
+      ctx.fillRect(90, 0, 260, 720);
+      ctx.fillStyle = '#733e17';
+      ctx.fillRect(110, 0, 100, 720);
 
-      // Canopy
-      ctx.fillStyle = '#15803d';
-      ctx.fillRect(0, 0, 500, 220);
-      ctx.fillStyle = '#16a34a';
-      ctx.fillRect(40, 20, 420, 160);
+      // Tree Leaves Canopy
+      ctx.fillStyle = isRaw ? '#15803d' : '#16a34a';
+      ctx.fillRect(0, 0, 520, 240);
+      ctx.fillStyle = '#22c55e';
+      ctx.fillRect(40, 30, 440, 170);
 
-      // Ground
-      ctx.fillStyle = '#166534';
-      ctx.fillRect(0, 480, 1280, 240);
+      // Village Houses
+      ctx.fillStyle = '#78350f';
+      ctx.fillRect(620, 380, 180, 140);
       ctx.fillStyle = '#b45309';
-      ctx.fillRect(0, 530, 1280, 190);
+      ctx.beginPath(); ctx.moveTo(600, 380); ctx.lineTo(710, 290); ctx.lineTo(820, 380); ctx.fill();
 
-      // Title Card
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
-      ctx.fillRect(360, 520, 560, 120);
-      ctx.strokeStyle = '#2D5A3D';
-      ctx.lineWidth = 3;
-      ctx.strokeRect(360, 520, 560, 120);
+      // Ground Grass
+      ctx.fillStyle = '#15803d';
+      ctx.fillRect(0, 490, 1280, 230);
+      ctx.fillStyle = '#78350f';
+      ctx.fillRect(0, 540, 1280, 180);
 
-      ctx.font = '900 42px "Playfair Display", Georgia, serif';
-      ctx.fillStyle = '#1A1714';
-      ctx.textAlign = 'center';
-      ctx.fillText('STEALTH VILLAGE HUNT', 640, 575);
-      
-      ctx.font = '700 16px "Inter", sans-serif';
-      ctx.fillStyle = '#2D5A3D';
-      ctx.fillText('DAYLIGHT 3D LIGHTING & ENVIRONMENT', 640, 612);
+      if (!isRaw) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
+        ctx.fillRect(360, 530, 560, 125);
+        ctx.strokeStyle = '#2D5A3D';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(360, 530, 560, 125);
+
+        ctx.font = '900 42px "Playfair Display", Georgia, serif';
+        ctx.fillStyle = '#1A1714';
+        ctx.textAlign = 'center';
+        ctx.fillText('STEALTH VILLAGE HUNT', 640, 585);
+        
+        ctx.font = '700 16px "Inter", sans-serif';
+        ctx.fillStyle = '#2D5A3D';
+        ctx.fillText('DAYLIGHT 3D LIGHTING & ENVIRONMENT', 640, 622);
+      }
+
+    } else if (type === 'nether') {
+      // Nether Lava Fortress PvP
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
+      bgGrad.addColorStop(0, '#2d0606');
+      bgGrad.addColorStop(0.5, '#5c1010');
+      bgGrad.addColorStop(1, '#170202');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1280, 720);
+
+      // Nether Brick Fortress
+      ctx.fillStyle = '#3b0a0a';
+      ctx.fillRect(100, 200, 340, 400);
+      ctx.fillRect(840, 200, 340, 400);
+      ctx.fillRect(360, 320, 560, 280);
+
+      // Glowing Lava Fall
+      if (!isRaw) {
+        ctx.shadowColor = '#f97316';
+        ctx.shadowBlur = 45;
+      }
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(480, 260, 120, 460);
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillRect(510, 260, 60, 460);
+
+      // Floating Fire Sparks
+      if (!isRaw) {
+        ctx.fillStyle = '#fef08a';
+        for (let i = 0; i < 60; i++) {
+          const x = (i * 47) % 1280;
+          const y = (i * 83) % 720;
+          ctx.beginPath(); ctx.arc(x, y, (i % 3) + 2, 0, Math.PI * 2); ctx.fill();
+        }
+
+        ctx.fillStyle = 'rgba(20, 4, 4, 0.9)';
+        ctx.fillRect(300, 530, 680, 125);
+        ctx.strokeStyle = '#f97316';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(300, 530, 680, 125);
+
+        ctx.font = '900 42px "Playfair Display", Georgia, serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText('NETHER FORTRESS CLASH', 640, 585);
+        
+        ctx.font = '700 16px "Inter", sans-serif';
+        ctx.fillStyle = '#f97316';
+        ctx.fillText('VOLUMETRIC LAVA LIGHTING & FIRE PARTICLES', 640, 622);
+      }
 
     } else {
       // Void Fall Scene
@@ -496,37 +643,48 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
       }
 
       // Void Purple Glow
-      const voidGlow = ctx.createRadialGradient(400, 450, 30, 400, 450, 500);
-      voidGlow.addColorStop(0, 'rgba(168, 85, 247, 0.7)');
-      voidGlow.addColorStop(0.6, 'rgba(88, 28, 135, 0.3)');
-      voidGlow.addColorStop(1, 'rgba(3, 0, 8, 0)');
-      ctx.fillStyle = voidGlow;
-      ctx.fillRect(0, 0, 1280, 720);
+      if (!isRaw) {
+        const voidGlow = ctx.createRadialGradient(400, 450, 30, 400, 450, 500);
+        voidGlow.addColorStop(0, 'rgba(168, 85, 247, 0.7)');
+        voidGlow.addColorStop(0.6, 'rgba(88, 28, 135, 0.3)');
+        voidGlow.addColorStop(1, 'rgba(3, 0, 8, 0)');
+        ctx.fillStyle = voidGlow;
+        ctx.fillRect(0, 0, 1280, 720);
+      }
 
-      // Title Card
-      ctx.fillStyle = 'rgba(10, 4, 20, 0.9)';
-      ctx.fillRect(340, 520, 600, 120);
-      ctx.strokeStyle = '#a855f7';
-      ctx.lineWidth = 3;
-      ctx.strokeRect(340, 520, 600, 120);
+      // 3D Obsidian Pillars
+      ctx.fillStyle = '#11061c';
+      ctx.fillRect(800, 140, 140, 580);
+      ctx.fillRect(1000, 240, 120, 480);
 
-      ctx.font = '900 42px "Playfair Display", Georgia, serif';
-      ctx.fillStyle = '#FFFFFF';
-      ctx.textAlign = 'center';
-      ctx.fillText('END ISLAND VOID FALL', 640, 575);
-      
-      ctx.font = '700 16px "Inter", sans-serif';
-      ctx.fillStyle = '#c084fc';
-      ctx.fillText('SPACE VOID & PARTICLES 3D RENDER', 640, 612);
+      if (!isRaw) {
+        // Title Card
+        ctx.fillStyle = 'rgba(10, 4, 20, 0.9)';
+        ctx.fillRect(340, 530, 600, 125);
+        ctx.strokeStyle = '#a855f7';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(340, 530, 600, 125);
+
+        ctx.font = '900 42px "Playfair Display", Georgia, serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.fillText('END ISLAND VOID FALL', 640, 585);
+        
+        ctx.font = '700 16px "Inter", sans-serif';
+        ctx.fillStyle = '#c084fc';
+        ctx.fillText('SPACE VOID & PARTICLES 3D RENDER', 640, 622);
+      }
     }
 
-    return canvas.toDataURL('image/jpeg', 0.92);
+    return canvas.toDataURL('image/jpeg', 0.94);
   }
 
   const RENDER_CACHE = {
-    wemmbu: createVisualThumbnail('wemmbu'),
-    hiding: createVisualThumbnail('hiding'),
-    void:   createVisualThumbnail('void')
+    wemmbu:     createVisualThumbnail('wemmbu', 'edited'),
+    wemmbu_raw: createVisualThumbnail('wemmbu', 'raw'),
+    hiding:     createVisualThumbnail('hiding', 'edited'),
+    nether:     createVisualThumbnail('nether', 'edited'),
+    void:       createVisualThumbnail('void', 'edited')
   };
 
   function showTab(name) {
@@ -535,6 +693,20 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     document.getElementById('tab-' + name).classList.add('active');
     document.getElementById('nav-' + name).classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function filterWork(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.g-card-item').forEach(card => {
+      const cardCat = card.getAttribute('data-cat');
+      if (cat === 'all' || cardCat === cat) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   }
 
   function openLbFromCard(cardEl) {
@@ -554,7 +726,6 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     if (!textEl) return;
     const text = textEl.innerText.trim();
     
-    // Standard iframe-compatible clipboard copy
     const temp = document.createElement("textarea");
     temp.value = text;
     document.body.appendChild(temp);
@@ -582,23 +753,22 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
       reader.onload = function(e) {
         const imageSrc = e.target.result;
         
-        // Add card to main gallery
         const gallery = document.getElementById('main-gallery-grid');
         const card = document.createElement('div');
         card.className = 'g-card-item';
+        card.setAttribute('data-cat', 'all');
         card.onclick = function() { openLbFromCard(this); };
         card.innerHTML = `
           <div class="g-img-wrap">
             <img src="${imageSrc}" alt="${file.name}">
           </div>
           <div class="g-label">
-            <span><i class="fa-solid fa-file-image" style="color:var(--accent)"></i> ${file.name.substring(0, 24)}</span>
-            <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+            <span><i class="fa-solid fa-file-image" style="color:var(--accent)"></i> ${file.name.substring(0, 20)}</span>
+            <span class="tag-badge">Custom Upload</span>
           </div>
         `;
         gallery.prepend(card);
 
-        // Also add to hero horizontal carousel
         const carousel = document.getElementById('featured-carousel');
         const scrollCard = document.createElement('div');
         scrollCard.className = 'scroll-card';
@@ -606,7 +776,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         scrollCard.innerHTML = `
           <img src="${imageSrc}" alt="${file.name}">
           <div class="card-caption">
-            <span><i class="fa-solid fa-star" style="color: var(--accent)"></i> ${file.name.substring(0, 24)}</span>
+            <span><i class="fa-solid fa-star" style="color: var(--accent)"></i> ${file.name.substring(0, 20)}</span>
             <i class="fa-solid fa-expand"></i>
           </div>
         `;
@@ -618,11 +788,46 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     }
   }
 
-  // Assign image renders immediately on window load
+  // Before / After Drag Slider Handler
+  function initBASlider() {
+    const slider = document.getElementById('ba-slider');
+    const overlay = document.getElementById('ba-overlay');
+    const container = document.getElementById('ba-container');
+    if (!slider || !overlay || !container) return;
+
+    let isDragging = false;
+
+    function move(x) {
+      const rect = container.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      if (pos < 0.05) pos = 0.05;
+      if (pos > 0.95) pos = 0.95;
+      overlay.style.width = (pos * 100) + '%';
+      slider.style.left = (pos * 100) + '%';
+    }
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; move(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if (isDragging) move(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    container.addEventListener('touchstart', (e) => { isDragging = true; move(e.touches[0].clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) move(e.touches[0].clientX); });
+    window.addEventListener('touchend', () => { isDragging = false; });
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.img-wemmbu-render').forEach(img => img.src = RENDER_CACHE.wemmbu);
     document.querySelectorAll('.img-hiding-render').forEach(img => img.src = RENDER_CACHE.hiding);
+    document.querySelectorAll('.img-nether-render').forEach(img => img.src = RENDER_CACHE.nether);
     document.querySelectorAll('.img-void-render').forEach(img => img.src = RENDER_CACHE.void);
+    
+    // Assign Before/After images
+    const rawImg = document.getElementById('ba-raw-img');
+    const editedImg = document.getElementById('ba-edited-img');
+    if (rawImg) rawImg.src = RENDER_CACHE.wemmbu_raw;
+    if (editedImg) editedImg.src = RENDER_CACHE.wemmbu;
+
+    initBASlider();
   });
 </script>
 
@@ -683,10 +888,38 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           </div>
 
           <div class="scroll-card" onclick="openLbFromCard(this)">
+            <img class="img-nether-render" src="" alt="Nether Lava Fortress PvP Clash">
+            <div class="card-caption">
+              <span><i class="fa-solid fa-fire" style="color: var(--accent)"></i> Nether Fortress Clash</span>
+              <i class="fa-solid fa-expand"></i>
+            </div>
+          </div>
+
+          <div class="scroll-card" onclick="openLbFromCard(this)">
             <img class="img-void-render" src="" alt="Falling into the End Void Render">
             <div class="card-caption">
               <span><i class="fa-solid fa-meteor" style="color: var(--accent)"></i> End Island Void Fall</span>
               <i class="fa-solid fa-expand"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before & After Post-Processing Showcase Section -->
+        <div class="ba-section">
+          <h2 class="section-heading" style="font-size:24px;">Render Breakdown (Raw 3D vs. Post-Processed)</h2>
+          <p class="section-sub" style="margin-bottom:16px;">Drag the handle left/right to compare raw Blender viewport output vs. final color-graded Photoshop finish.</p>
+          
+          <div class="ba-container" id="ba-container">
+            <img id="ba-edited-img" class="ba-image" src="" alt="Post Processed Thumbnail">
+            <span class="ba-badge edited">Photoshop Edited</span>
+            
+            <div class="ba-overlay" id="ba-overlay">
+              <img id="ba-raw-img" src="" alt="Raw Blender 3D Render">
+              <span class="ba-badge raw">Raw 3D Render</span>
+            </div>
+            
+            <div class="ba-slider" id="ba-slider">
+              <div class="ba-handle"><i class="fa-solid fa-left-right"></i></div>
             </div>
           </div>
         </div>
@@ -743,6 +976,14 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           </div>
         </div>
 
+        <!-- Filter Buttons -->
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterWork('all', this)">All Renders</button>
+          <button class="filter-btn" onclick="filterWork('smp', this)">SMP & Story</button>
+          <button class="filter-btn" onclick="filterWork('pvp', this)">PvP & Action</button>
+          <button class="filter-btn" onclick="filterWork('hardcore', this)">Hardcore & Survival</button>
+        </div>
+
         <div class="upload-zone" onclick="this.querySelector('input').click()">
           <i class="fa-solid fa-cloud-arrow-up"></i>
           <p>Add your own thumbnail file to test portfolio display</p>
@@ -751,33 +992,43 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         </div>
 
         <div class="gallery-grid" id="main-gallery-grid">
-          <div class="g-card-item" onclick="openLbFromCard(this)">
+          <div class="g-card-item" data-cat="smp" onclick="openLbFromCard(this)">
             <div class="g-img-wrap">
               <img class="img-wemmbu-render" src="" alt="Dark Castle Battle Render">
             </div>
             <div class="g-label">
               <span>Purple Castle Team (Wemmbu Style)</span>
-              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+              <span class="tag-badge">SMP & Story</span>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLbFromCard(this)">
+          <div class="g-card-item" data-cat="hardcore" onclick="openLbFromCard(this)">
             <div class="g-img-wrap">
               <img class="img-hiding-render" src="" alt="Stealth Village Hunt Render">
             </div>
             <div class="g-label">
               <span>Hiding from Armored Players</span>
-              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+              <span class="tag-badge">Hardcore</span>
             </div>
           </div>
 
-          <div class="g-card-item" onclick="openLbFromCard(this)">
+          <div class="g-card-item" data-cat="pvp" onclick="openLbFromCard(this)">
+            <div class="g-img-wrap">
+              <img class="img-nether-render" src="" alt="Nether Lava Fortress Clash">
+            </div>
+            <div class="g-label">
+              <span>Nether Fortress Clash</span>
+              <span class="tag-badge">PvP & Action</span>
+            </div>
+          </div>
+
+          <div class="g-card-item" data-cat="smp" onclick="openLbFromCard(this)">
             <div class="g-img-wrap">
               <img class="img-void-render" src="" alt="Falling into the Void Render">
             </div>
             <div class="g-label">
               <span>Falling into the Void (End Island)</span>
-              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+              <span class="tag-badge">SMP & Story</span>
             </div>
           </div>
         </div>
