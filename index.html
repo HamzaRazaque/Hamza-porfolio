@@ -172,10 +172,6 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
 .work-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(30px,4vw,44px); color: var(--text); }
 .work-sub { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 6px; }
 
-.view-toggle { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
-.tog { font-size: 12px; font-family: var(--sans-ui); font-weight: 600; padding: 8px 14px; border-radius: 7px; border: none; cursor: pointer; color: var(--muted); background: transparent; }
-.tog.active { background: var(--accent); color: #fff; }
-
 .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
 .g-card-item { width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); cursor: pointer; position: relative; background: var(--surface-card); }
 .g-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
@@ -201,8 +197,16 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
   .contact-cards, .gallery-grid { grid-template-columns: 1fr; }
 }
 </style>
+</head>
 
+<body>
+
+<!-- PASTE YOUR DIRECT IMAGE URLS HERE -->
 <script>
+  const IMAGE_1 = "PASTE_YOUR_IMAGE_1_URL_HERE";
+  const IMAGE_2 = "PASTE_YOUR_IMAGE_2_URL_HERE";
+  const IMAGE_3 = "PASTE_YOUR_IMAGE_3_URL_HERE";
+
   function showTab(name) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -218,16 +222,13 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
   function closeLb() {
     document.getElementById('lb').classList.remove('open');
   }
-</script>
-</head>
 
-<body>
-
-<!-- REPLACE THESE THREE VARIABLES WITH YOUR DIRECT IMAGE URLS -->
-<script>
-  const IMAGE_1 = "PASTE_YOUR_IMAGE_1_URL_HERE";
-  const IMAGE_2 = "PASTE_YOUR_IMAGE_2_URL_HERE";
-  const IMAGE_3 = "PASTE_YOUR_IMAGE_3_URL_HERE";
+  // Populate image URLs automatically on load
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.img-1').forEach(img => { img.src = IMAGE_1; });
+    document.querySelectorAll('.img-2').forEach(img => { img.src = IMAGE_2; });
+    document.querySelectorAll('.img-3').forEach(img => { img.src = IMAGE_3; });
+  });
 </script>
 
 <header>
@@ -268,13 +269,13 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         <!-- MAIN 3 IMAGES -->
         <div class="about-showcase">
           <div class="about-img-card" onclick="openLb(IMAGE_1)">
-            <img src="PASTE_YOUR_IMAGE_1_URL_HERE" alt="Render 1">
+            <img class="img-1" alt="Render 1">
           </div>
           <div class="about-img-card" onclick="openLb(IMAGE_2)">
-            <img src="PASTE_YOUR_IMAGE_2_URL_HERE" alt="Render 2">
+            <img class="img-2" alt="Render 2">
           </div>
           <div class="about-img-card" onclick="openLb(IMAGE_3)">
-            <img src="PASTE_YOUR_IMAGE_3_URL_HERE" alt="Render 3">
+            <img class="img-3" alt="Render 3">
           </div>
         </div>
 
@@ -299,13 +300,13 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 
         <div class="gallery-grid">
           <div class="g-card-item" onclick="openLb(IMAGE_1)">
-            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_1_URL_HERE" alt="Render 1"></div>
+            <div class="g-img-wrap"><img class="img-1" alt="Render 1"></div>
           </div>
           <div class="g-card-item" onclick="openLb(IMAGE_2)">
-            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_2_URL_HERE" alt="Render 2"></div>
+            <div class="g-img-wrap"><img class="img-2" alt="Render 2"></div>
           </div>
           <div class="g-card-item" onclick="openLb(IMAGE_3)">
-            <div class="g-img-wrap"><img src="PASTE_YOUR_IMAGE_3_URL_HERE" alt="Render 3"></div>
+            <div class="g-img-wrap"><img class="img-3" alt="Render 3"></div>
           </div>
         </div>
       </div>
