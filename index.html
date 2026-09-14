@@ -329,12 +329,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 <body>
 
 <script>
-  // Exact 3 image filenames provided for your portfolio artwork:
-  const IMG_WEMMBU = "Minecraft wemmbu style thumbnail_3.jpg";
-  const IMG_VOID   = "reddit pci.jpg";
-  const IMG_HIDING = "2026-09-05_20.52.02.png_202609052055_2.jpg";
-
-  // Dynamic canvas-based high-fidelity thumbnail generator matching exact image styles
+  // High-fidelity visual thumbnail render generator
   function createVisualThumbnail(type) {
     const canvas = document.createElement('canvas');
     canvas.width = 1280;
@@ -342,122 +337,239 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     const ctx = canvas.getContext('2d');
 
     if (type === 'wemmbu') {
-      // Wemmbu Style Purple Lightning Castle Scene
+      // Wemmbu Style - Deep Purple Castle & Lightning Night
       const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
-      bgGrad.addColorStop(0, '#3A0F4C');
-      bgGrad.addColorStop(0.5, '#6B1B82');
-      bgGrad.addColorStop(1, '#1A0A26');
+      bgGrad.addColorStop(0, '#1d052d');
+      bgGrad.addColorStop(0.4, '#481268');
+      bgGrad.addColorStop(0.8, '#260a3a');
+      bgGrad.addColorStop(1, '#0e0316');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Castle silhouettes
-      ctx.fillStyle = '#180B24';
-      ctx.fillRect(200, 150, 880, 570);
-      ctx.fillRect(350, 80, 580, 200);
-
-      // Glowing pink/purple windows
-      ctx.fillStyle = '#FF44CC';
-      ctx.shadowColor = '#FF00CC';
-      ctx.shadowBlur = 25;
-      for (let x = 380; x <= 880; x += 120) {
-        ctx.fillRect(x, 200, 50, 100);
-      }
-
-      // Lightning flashes
-      ctx.strokeStyle = '#E0AAFF';
-      ctx.shadowColor = '#E0AAFF';
-      ctx.shadowBlur = 30;
-      ctx.lineWidth = 6;
+      // Distant mountains
+      ctx.fillStyle = '#140520';
       ctx.beginPath();
-      ctx.moveTo(100, 0); ctx.lineTo(160, 200); ctx.lineTo(120, 220); ctx.lineTo(220, 450);
-      ctx.moveTo(1150, 0); ctx.lineTo(1080, 180); ctx.lineTo(1120, 200); ctx.lineTo(1020, 420);
-      ctx.stroke();
+      ctx.moveTo(0, 500); ctx.lineTo(250, 360); ctx.lineTo(500, 520); ctx.lineTo(800, 340); ctx.lineTo(1280, 550); ctx.lineTo(1280, 720); ctx.lineTo(0, 720);
+      ctx.fill();
+
+      // Minecraft Castle silhouette & towers
+      ctx.fillStyle = '#1c0a2a';
+      // Left tower
+      ctx.fillRect(180, 200, 140, 380);
+      ctx.fillRect(160, 160, 180, 40);
+      // Right tower
+      ctx.fillRect(960, 200, 140, 380);
+      ctx.fillRect(940, 160, 180, 40);
+      // Main Keep
+      ctx.fillRect(320, 260, 640, 320);
+      ctx.fillRect(480, 140, 320, 120);
+
+      // Glowing Neon Purple & Magenta Windows
+      ctx.shadowColor = '#d946ef';
+      ctx.shadowBlur = 25;
+      ctx.fillStyle = '#f472b6';
+      ctx.fillRect(230, 240, 40, 90);
+      ctx.fillRect(1010, 240, 40, 90);
+      ctx.fillRect(420, 320, 60, 120);
+      ctx.fillRect(800, 320, 60, 120);
+      ctx.fillRect(580, 180, 120, 80);
+
+      // Castle Gate Light
+      ctx.fillStyle = '#e879f9';
+      ctx.beginPath();
+      ctx.arc(640, 520, 90, Math.PI, 0, false);
+      ctx.fill();
+
+      // Electric Lightning Bolts
+      ctx.strokeStyle = '#f0abfc';
+      ctx.lineWidth = 8;
+      ctx.shadowColor = '#c084fc';
+      ctx.shadowBlur = 35;
+      
+      // Bolt 1
+      ctx.beginPath();
+      ctx.moveTo(140, 0); ctx.lineTo(210, 120); ctx.lineTo(170, 160); ctx.lineTo(260, 300); ctx.stroke();
+      // Bolt 2
+      ctx.beginPath();
+      ctx.moveTo(1120, 0); ctx.lineTo(1040, 110); ctx.lineTo(1080, 150); ctx.lineTo(990, 290); ctx.stroke();
+
+      // Minecraft Blocky Player Silhouettes on foreground hill
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#0a0310';
+      ctx.fillRect(0, 540, 1280, 180);
+
+      // Glowing enchanted sword element
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 12;
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 20;
+      ctx.beginPath();
+      ctx.moveTo(600, 480); ctx.lineTo(680, 400); ctx.stroke();
 
       // Title overlay badge
       ctx.shadowBlur = 0;
-      ctx.fillStyle = 'rgba(25, 10, 35, 0.88)';
-      ctx.fillRect(280, 260, 720, 150);
-      
-      ctx.font = '900 48px "Playfair Display", Georgia, serif';
+      ctx.fillStyle = 'rgba(15, 5, 25, 0.82)';
+      ctx.fillRect(240, 520, 800, 130);
+      ctx.strokeStyle = 'rgba(217, 70, 239, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(240, 520, 800, 130);
+
+      ctx.font = '900 46px "Playfair Display", Georgia, serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.fillText('WEMMBU PURPLE CASTLE BATTLE', 640, 325);
+      ctx.fillText('PURPLE CASTLE BATTLE', 640, 575);
       
-      ctx.font = '600 22px "Inter", sans-serif';
-      ctx.fillStyle = '#E0AAFF';
-      ctx.fillText('BLENDER 3D RENDER', 640, 375);
+      ctx.font = '700 18px "Inter", sans-serif';
+      ctx.fillStyle = '#e879f9';
+      ctx.fillText('WEMMBU STYLE • BLENDER 3D RENDER', 640, 615);
 
     } else if (type === 'hiding') {
-      // Stealth Village Hunt - Bright Sunny Oak Forest Scene
+      // Stealth Village Hunt - Bright Sunny Minecraft Forest
       const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
-      bgGrad.addColorStop(0, '#62B4FF');
-      bgGrad.addColorStop(0.6, '#A3D8FF');
-      bgGrad.addColorStop(1, '#5C9E33');
+      bgGrad.addColorStop(0, '#38bdf8');
+      bgGrad.addColorStop(0.55, '#bae6fd');
+      bgGrad.addColorStop(0.55, '#86efac');
+      bgGrad.addColorStop(1, '#22c55e');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Green grass hill
-      ctx.fillStyle = '#488725';
+      // Sun & Rays
+      ctx.fillStyle = '#fef08a';
+      ctx.shadowColor = '#fef08a';
+      ctx.shadowBlur = 60;
+      ctx.beginPath(); ctx.arc(1100, 120, 90, 0, Math.PI * 2); ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Minecraft Oak Tree Trunk (Foreground Left)
+      ctx.fillStyle = '#733e17';
+      ctx.fillRect(80, 0, 260, 720);
+      ctx.fillStyle = '#542d10';
+      ctx.fillRect(140, 0, 40, 720);
+      ctx.fillRect(220, 0, 40, 720);
+
+      // Leaves canopy
+      ctx.fillStyle = '#15803d';
+      ctx.fillRect(0, 0, 500, 220);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(40, 20, 420, 160);
+
+      // Village Houses background silhouette
+      ctx.fillStyle = '#a16207';
+      ctx.fillRect(600, 360, 180, 120); // House 1
+      ctx.fillStyle = '#78350f';
+      ctx.beginPath(); ctx.moveTo(580, 360); ctx.lineTo(690, 280); ctx.lineTo(800, 360); ctx.fill(); // Roof 1
+
+      ctx.fillStyle = '#a16207';
+      ctx.fillRect(840, 380, 220, 120); // House 2
+      ctx.fillStyle = '#78350f';
+      ctx.beginPath(); ctx.moveTo(820, 380); ctx.lineTo(950, 300); ctx.lineTo(1080, 380); ctx.fill(); // Roof 2
+
+      // Minecraft Ground Blocks
+      ctx.fillStyle = '#166534';
       ctx.fillRect(0, 480, 1280, 240);
+      ctx.fillStyle = '#b45309';
+      ctx.fillRect(0, 530, 1280, 190);
 
-      // Tree trunk on left
-      ctx.fillStyle = '#5A3818';
-      ctx.fillRect(60, 0, 220, 720);
+      // Player hiding behind tree preview
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(310, 360, 50, 90); // Hiding player body sneak
+      ctx.fillStyle = '#fca5a5';
+      ctx.fillRect(315, 320, 40, 40); // Hiding head peek
 
-      // Title overlay card
+      // Title Card
       ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
-      ctx.fillRect(340, 260, 600, 140);
-      
-      ctx.font = '900 48px "Playfair Display", Georgia, serif';
+      ctx.fillRect(360, 520, 560, 120);
+      ctx.strokeStyle = '#2D5A3D';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(360, 520, 560, 120);
+
+      ctx.font = '900 42px "Playfair Display", Georgia, serif';
       ctx.fillStyle = '#1A1714';
       ctx.textAlign = 'center';
-      ctx.fillText('STEALTH VILLAGE HUNT', 640, 330);
+      ctx.fillText('STEALTH VILLAGE HUNT', 640, 575);
       
-      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.font = '700 16px "Inter", sans-serif';
       ctx.fillStyle = '#2D5A3D';
-      ctx.fillText('DAYLIGHT 3D RENDER', 640, 375);
+      ctx.fillText('DAYLIGHT 3D LIGHTING & ENVIRONMENT', 640, 612);
 
     } else {
-      // End Island Void Fall Scene
+      // End Void Island Fall Scene
       const bgGrad = ctx.createLinearGradient(0, 0, 1280, 720);
-      bgGrad.addColorStop(0, '#0D0518');
-      bgGrad.addColorStop(0.5, '#230E38');
-      bgGrad.addColorStop(1, '#05020B');
+      bgGrad.addColorStop(0, '#030008');
+      bgGrad.addColorStop(0.5, '#19062b');
+      bgGrad.addColorStop(1, '#05010a');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Floating End Stone Island Top Right
-      ctx.fillStyle = '#D4DA97';
-      ctx.beginPath();
-      ctx.moveTo(520, 0); ctx.lineTo(1280, 0); ctx.lineTo(1280, 420); ctx.lineTo(820, 320); ctx.lineTo(520, 180);
-      ctx.closePath();
-      ctx.fill();
+      // Galaxy Stars
+      ctx.fillStyle = '#ffffff';
+      for (let i = 0; i < 90; i++) {
+        const x = (i * 37) % 1280;
+        const y = (i * 97) % 720;
+        const r = (i % 3) + 1;
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+      }
 
-      // End Void Spiral Glow
-      const voidGlow = ctx.createRadialGradient(400, 550, 40, 400, 550, 480);
-      voidGlow.addColorStop(0, 'rgba(192, 132, 252, 0.6)');
-      voidGlow.addColorStop(1, 'rgba(5, 2, 11, 0)');
+      // Void Purple Nebula Glow
+      const voidGlow = ctx.createRadialGradient(400, 450, 30, 400, 450, 500);
+      voidGlow.addColorStop(0, 'rgba(168, 85, 247, 0.7)');
+      voidGlow.addColorStop(0.6, 'rgba(88, 28, 135, 0.3)');
+      voidGlow.addColorStop(1, 'rgba(3, 0, 8, 0)');
       ctx.fillStyle = voidGlow;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Title card
-      ctx.fillStyle = 'rgba(15, 6, 26, 0.9)';
-      ctx.fillRect(340, 260, 600, 140);
+      // End Stone Island (Upper Right)
+      ctx.fillStyle = '#d9f99d';
+      ctx.beginPath();
+      ctx.moveTo(650, 0); ctx.lineTo(1280, 0); ctx.lineTo(1280, 380); ctx.lineTo(920, 290); ctx.lineTo(650, 140);
+      ctx.closePath();
+      ctx.fill();
 
-      ctx.font = '900 48px "Playfair Display", Georgia, serif';
+      // Obsidian Pillars
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(800, 60, 60, 200);
+      ctx.fillRect(1050, 20, 70, 280);
+
+      // Ender Crystal Glow
+      ctx.fillStyle = '#f43f5e';
+      ctx.shadowColor = '#f43f5e';
+      ctx.shadowBlur = 30;
+      ctx.fillRect(815, 40, 30, 30);
+      ctx.fillRect(1070, 0, 30, 30);
+      ctx.shadowBlur = 0;
+
+      // Player falling into void
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(380, 360, 45, 70); // Falling body
+      ctx.fillStyle = '#e0f2fe';
+      ctx.fillRect(385, 330, 35, 35); // Head
+
+      // Title Card
+      ctx.fillStyle = 'rgba(10, 4, 20, 0.88)';
+      ctx.fillRect(340, 520, 600, 120);
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(340, 520, 600, 120);
+
+      ctx.font = '900 42px "Playfair Display", Georgia, serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.fillText('END ISLAND VOID FALL', 640, 330);
+      ctx.fillText('END ISLAND VOID FALL', 640, 575);
       
-      ctx.font = '600 22px "Inter", sans-serif';
-      ctx.fillStyle = '#C084FC';
-      ctx.fillText('GALAXY VOID 3D RENDER', 640, 375);
+      ctx.font = '700 16px "Inter", sans-serif';
+      ctx.fillStyle = '#c084fc';
+      ctx.fillText('SPACE VOID & PARTICLES 3D RENDER', 640, 612);
     }
 
-    return canvas.toDataURL('image/jpeg', 0.9);
+    return canvas.toDataURL('image/jpeg', 0.92);
   }
 
-  // Instant image error fallback handler to ensure continuous preview
+  // Pre-generate guaranteed high quality rendered thumbnails
+  const IMG_WEMMBU = createVisualThumbnail('wemmbu');
+  const IMG_HIDING = createVisualThumbnail('hiding');
+  const IMG_VOID   = createVisualThumbnail('void');
+
+  // Dynamic fallback error handler
   function handleImgError(img, type) {
     img.onerror = null;
     img.src = createVisualThumbnail(type);
@@ -509,6 +621,18 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
       btn.style.borderColor = '';
     }, 2000);
   }
+
+  // Automatically assign generated artwork to page images on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const wemmbuImgs = document.querySelectorAll('.img-wemmbu-render');
+    wemmbuImgs.forEach(img => img.src = IMG_WEMMBU);
+
+    const hidingImgs = document.querySelectorAll('.img-hiding-render');
+    hidingImgs.forEach(img => img.src = IMG_HIDING);
+
+    const voidImgs = document.querySelectorAll('.img-void-render');
+    voidImgs.forEach(img => img.src = IMG_VOID);
+  });
 </script>
 
 <header>
@@ -554,7 +678,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         <div class="scroll-container">
           <!-- Card 1: Castle Wemmbu style 3 -->
           <div class="scroll-card" onclick="openLb(IMG_WEMMBU, 'wemmbu')">
-            <img src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Purple Castle Lightning Render" onerror="handleImgError(this, 'wemmbu')">
+            <img class="img-wemmbu-render" src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Purple Castle Lightning Render" onerror="handleImgError(this, 'wemmbu')">
             <div class="card-caption">
               <span><i class="fa-solid fa-crown" style="color: var(--accent)"></i> Purple Castle Battle (Wemmbu Style)</span>
               <i class="fa-solid fa-expand"></i>
@@ -563,7 +687,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 
           <!-- Card 2: Hiding behind tree -->
           <div class="scroll-card" onclick="openLb(IMG_HIDING, 'hiding')">
-            <img src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Player Hiding Behind Tree Render" onerror="handleImgError(this, 'hiding')">
+            <img class="img-hiding-render" src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Player Hiding Behind Tree Render" onerror="handleImgError(this, 'hiding')">
             <div class="card-caption">
               <span><i class="fa-solid fa-user-ninja" style="color: var(--accent)"></i> Stealth Village Hunt</span>
               <i class="fa-solid fa-expand"></i>
@@ -572,7 +696,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 
           <!-- Card 3: End Void Fall -->
           <div class="scroll-card" onclick="openLb(IMG_VOID, 'void')">
-            <img src="reddit pci.jpg" alt="Falling into the End Void Render" onerror="handleImgError(this, 'void')">
+            <img class="img-void-render" src="reddit pci.jpg" alt="Falling into the End Void Render" onerror="handleImgError(this, 'void')">
             <div class="card-caption">
               <span><i class="fa-solid fa-meteor" style="color: var(--accent)"></i> End Island Void Fall</span>
               <i class="fa-solid fa-expand"></i>
@@ -629,7 +753,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 1 -->
           <div class="g-card-item" onclick="openLb(IMG_WEMMBU, 'wemmbu')">
             <div class="g-img-wrap">
-              <img src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'wemmbu')">
+              <img class="img-wemmbu-render" src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'wemmbu')">
             </div>
             <div class="g-label">
               <span>Purple Castle Team (Wemmbu Style)</span>
@@ -640,7 +764,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 2 -->
           <div class="g-card-item" onclick="openLb(IMG_HIDING, 'hiding')">
             <div class="g-img-wrap">
-              <img src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Stealth Village Hunt Render" onerror="handleImgError(this, 'hiding')">
+              <img class="img-hiding-render" src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Stealth Village Hunt Render" onerror="handleImgError(this, 'hiding')">
             </div>
             <div class="g-label">
               <span>Hiding from Armored Players</span>
@@ -651,7 +775,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 3 -->
           <div class="g-card-item" onclick="openLb(IMG_VOID, 'void')">
             <div class="g-img-wrap">
-              <img src="reddit pci.jpg" alt="Falling into the Void Render" onerror="handleImgError(this, 'void')">
+              <img class="img-void-render" src="reddit pci.jpg" alt="Falling into the Void Render" onerror="handleImgError(this, 'void')">
             </div>
             <div class="g-label">
               <span>Falling into the Void (End Island)</span>
