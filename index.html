@@ -334,6 +334,14 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
   const IMG_HIDING = "2026-09-05_20.52.02.png_202609052055.jpg";
   const IMG_VOID   = "Character_falling_into_the_void_202609041557.jpeg";
 
+  // Fallback generator when local image files aren't found in web preview
+  function handleImgError(img, altText, themeHex) {
+    img.onerror = null;
+    const bg = themeHex || '1A1714';
+    const text = encodeURIComponent(altText || 'Minecraft 3D Render');
+    img.src = `https://placehold.co/1280x720/${bg}/FFFFFF?text=${text}`;
+  }
+
   function showTab(name) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -343,7 +351,8 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
   }
 
   function openLb(src) {
-    document.getElementById('lb-img').src = src;
+    const lbImg = document.getElementById('lb-img');
+    lbImg.src = src;
     document.getElementById('lb').classList.add('open');
   }
   function closeLb() {
@@ -425,7 +434,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         <div class="scroll-container">
           <!-- Card 1: Castle Wemmbu style -->
           <div class="scroll-card" onclick="openLb(IMG_WEMMBU)">
-            <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render">
+            <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'Wemmbu Castle Battle Render', '2D5A3D')">
             <div class="card-caption">
               <span><i class="fa-solid fa-crown" style="color: var(--accent)"></i> Wemmbu Castle Battle</span>
               <i class="fa-solid fa-expand"></i>
@@ -434,7 +443,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 
           <!-- Card 2: Hiding behind tree -->
           <div class="scroll-card" onclick="openLb(IMG_HIDING)">
-            <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Player Hiding Near Village Render">
+            <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Player Hiding Near Village Render" onerror="handleImgError(this, 'Stealth Village Hunt Render', '22442E')">
             <div class="card-caption">
               <span><i class="fa-solid fa-user-ninja" style="color: var(--accent)"></i> Stealth Village Hunt</span>
               <i class="fa-solid fa-expand"></i>
@@ -443,7 +452,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 
           <!-- Card 3: Void Fall -->
           <div class="scroll-card" onclick="openLb(IMG_VOID)">
-            <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Character Falling Into The Void Render">
+            <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Character Falling Into The Void Render" onerror="handleImgError(this, 'End Island Void Fall Render', '1A1714')">
             <div class="card-caption">
               <span><i class="fa-solid fa-meteor" style="color: var(--accent)"></i> End Island Void Fall</span>
               <i class="fa-solid fa-expand"></i>
@@ -500,7 +509,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 1 -->
           <div class="g-card-item" onclick="openLb(IMG_WEMMBU)">
             <div class="g-img-wrap">
-              <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render">
+              <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'Dark Castle Battle (Wemmbu Style)', '2D5A3D')">
             </div>
             <div class="g-label">
               <span>Dark Castle Battle (Wemmbu Style)</span>
@@ -511,7 +520,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 2 -->
           <div class="g-card-item" onclick="openLb(IMG_HIDING)">
             <div class="g-img-wrap">
-              <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Stealth Village Hunt Render">
+              <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Stealth Village Hunt Render" onerror="handleImgError(this, 'Hiding from Armored Players', '22442E')">
             </div>
             <div class="g-label">
               <span>Hiding from Armored Players</span>
@@ -522,7 +531,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 3 -->
           <div class="g-card-item" onclick="openLb(IMG_VOID)">
             <div class="g-img-wrap">
-              <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Falling into the Void Render">
+              <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Falling into the Void Render" onerror="handleImgError(this, 'Falling into the Void', '1A1714')">
             </div>
             <div class="g-label">
               <span>Falling into the Void</span>
@@ -590,7 +599,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-inner" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lb-img" src="" alt="Enlarged 3D render preview">
+    <img id="lb-img" src="" alt="Enlarged 3D render preview" onerror="handleImgError(this, '3D Render Preview', '2D5A3D')">
   </div>
 </div>
 
