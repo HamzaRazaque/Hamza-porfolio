@@ -329,12 +329,12 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 <body>
 
 <script>
-  // Exact 3 images provided for render gallery & home showcase
-  const IMG_WEMMBU = "Minecraft wemmbu style thumbnail_2.jpg";
-  const IMG_HIDING = "2026-09-05_20.52.02.png_202609052055.jpg";
-  const IMG_VOID   = "Character_falling_into_the_void_202609041557.jpeg";
+  // Exact 3 image filenames provided for your portfolio artwork:
+  const IMG_WEMMBU = "Minecraft wemmbu style thumbnail_3.jpg";
+  const IMG_VOID   = "reddit pci.jpg";
+  const IMG_HIDING = "2026-09-05_20.52.02.png_202609052055_2.jpg";
 
-  // Dynamic canvas-based thumbnail generator for instant, guaranteed visual preview
+  // Dynamic canvas-based high-fidelity thumbnail generator matching exact image styles
   function createVisualThumbnail(type) {
     const canvas = document.createElement('canvas');
     canvas.width = 1280;
@@ -342,110 +342,122 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     const ctx = canvas.getContext('2d');
 
     if (type === 'wemmbu') {
-      // Wemmbu Style Castle Battle Scene
-      const bgGrad = ctx.createLinearGradient(0, 0, 1280, 720);
-      bgGrad.addColorStop(0, '#0F1B12');
-      bgGrad.addColorStop(0.5, '#1A3322');
-      bgGrad.addColorStop(1, '#080C09');
+      // Wemmbu Style Purple Lightning Castle Scene
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
+      bgGrad.addColorStop(0, '#3A0F4C');
+      bgGrad.addColorStop(0.5, '#6B1B82');
+      bgGrad.addColorStop(1, '#1A0A26');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
       // Castle silhouettes
-      ctx.fillStyle = '#0a120b';
-      ctx.fillRect(150, 250, 180, 470);
-      ctx.fillRect(200, 180, 80, 70);
-      ctx.fillRect(850, 220, 240, 500);
+      ctx.fillStyle = '#180B24';
+      ctx.fillRect(200, 150, 880, 570);
+      ctx.fillRect(350, 80, 580, 200);
 
-      // Radial Green Glow
-      const glow = ctx.createRadialGradient(640, 360, 50, 640, 360, 500);
-      glow.addColorStop(0, 'rgba(45, 180, 90, 0.45)');
-      glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, 1280, 720);
+      // Glowing pink/purple windows
+      ctx.fillStyle = '#FF44CC';
+      ctx.shadowColor = '#FF00CC';
+      ctx.shadowBlur = 25;
+      for (let x = 380; x <= 880; x += 120) {
+        ctx.fillRect(x, 200, 50, 100);
+      }
 
-      // Title badge
-      ctx.fillStyle = '#2D5A3D';
-      ctx.shadowColor = '#000000';
-      ctx.shadowBlur = 20;
-      ctx.fillRect(340, 260, 600, 140);
+      // Lightning flashes
+      ctx.strokeStyle = '#E0AAFF';
+      ctx.shadowColor = '#E0AAFF';
+      ctx.shadowBlur = 30;
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(100, 0); ctx.lineTo(160, 200); ctx.lineTo(120, 220); ctx.lineTo(220, 450);
+      ctx.moveTo(1150, 0); ctx.lineTo(1080, 180); ctx.lineTo(1120, 200); ctx.lineTo(1020, 420);
+      ctx.stroke();
+
+      // Title overlay badge
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba(25, 10, 35, 0.88)';
+      ctx.fillRect(280, 260, 720, 150);
       
-      ctx.font = '900 52px "Playfair Display", Georgia, serif';
+      ctx.font = '900 48px "Playfair Display", Georgia, serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.fillText('WEMMBU CASTLE BATTLE', 640, 330);
+      ctx.fillText('WEMMBU PURPLE CASTLE BATTLE', 640, 325);
       
-      ctx.font = '600 24px "Inter", sans-serif';
-      ctx.fillStyle = '#A3E0B5';
-      ctx.fillText('MINECRAFT 3D RENDER', 640, 375);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#E0AAFF';
+      ctx.fillText('BLENDER 3D RENDER', 640, 375);
 
     } else if (type === 'hiding') {
-      // Stealth Village Hunt Scene
-      const bgGrad = ctx.createLinearGradient(0, 0, 1280, 720);
-      bgGrad.addColorStop(0, '#1c2214');
-      bgGrad.addColorStop(1, '#090d07');
+      // Stealth Village Hunt - Bright Sunny Oak Forest Scene
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 720);
+      bgGrad.addColorStop(0, '#62B4FF');
+      bgGrad.addColorStop(0.6, '#A3D8FF');
+      bgGrad.addColorStop(1, '#5C9E33');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Tree silhouette
-      ctx.fillStyle = '#11180d';
-      ctx.beginPath();
-      ctx.arc(200, 200, 220, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillRect(150, 350, 100, 370);
+      // Green grass hill
+      ctx.fillStyle = '#488725';
+      ctx.fillRect(0, 480, 1280, 240);
 
-      // Warm village fire glow
-      const fireGlow = ctx.createRadialGradient(900, 450, 20, 900, 450, 400);
-      fireGlow.addColorStop(0, 'rgba(255, 140, 0, 0.4)');
-      fireGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = fireGlow;
-      ctx.fillRect(0, 0, 1280, 720);
+      // Tree trunk on left
+      ctx.fillStyle = '#5A3818';
+      ctx.fillRect(60, 0, 220, 720);
 
-      // Title overlay
-      ctx.fillStyle = 'rgba(20, 30, 15, 0.85)';
+      // Title overlay card
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
       ctx.fillRect(340, 260, 600, 140);
       
-      ctx.font = '900 52px "Playfair Display", Georgia, serif';
-      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 48px "Playfair Display", Georgia, serif';
+      ctx.fillStyle = '#1A1714';
       ctx.textAlign = 'center';
       ctx.fillText('STEALTH VILLAGE HUNT', 640, 330);
       
-      ctx.font = '600 24px "Inter", sans-serif';
-      ctx.fillStyle = '#FFE099';
-      ctx.fillText('MINECRAFT 3D RENDER', 640, 375);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#2D5A3D';
+      ctx.fillText('DAYLIGHT 3D RENDER', 640, 375);
 
     } else {
-      // End Void Fall Scene
+      // End Island Void Fall Scene
       const bgGrad = ctx.createLinearGradient(0, 0, 1280, 720);
-      bgGrad.addColorStop(0, '#160B24');
-      bgGrad.addColorStop(1, '#05020A');
+      bgGrad.addColorStop(0, '#0D0518');
+      bgGrad.addColorStop(0.5, '#230E38');
+      bgGrad.addColorStop(1, '#05020B');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1280, 720);
 
-      // Purple End Void Glow
-      const voidGlow = ctx.createRadialGradient(640, 500, 30, 640, 500, 450);
-      voidGlow.addColorStop(0, 'rgba(168, 85, 247, 0.5)');
-      voidGlow.addColorStop(1, 'rgba(5, 2, 10, 0)');
+      // Floating End Stone Island Top Right
+      ctx.fillStyle = '#D4DA97';
+      ctx.beginPath();
+      ctx.moveTo(520, 0); ctx.lineTo(1280, 0); ctx.lineTo(1280, 420); ctx.lineTo(820, 320); ctx.lineTo(520, 180);
+      ctx.closePath();
+      ctx.fill();
+
+      // End Void Spiral Glow
+      const voidGlow = ctx.createRadialGradient(400, 550, 40, 400, 550, 480);
+      voidGlow.addColorStop(0, 'rgba(192, 132, 252, 0.6)');
+      voidGlow.addColorStop(1, 'rgba(5, 2, 11, 0)');
       ctx.fillStyle = voidGlow;
       ctx.fillRect(0, 0, 1280, 720);
 
       // Title card
-      ctx.fillStyle = 'rgba(20, 10, 35, 0.9)';
+      ctx.fillStyle = 'rgba(15, 6, 26, 0.9)';
       ctx.fillRect(340, 260, 600, 140);
 
-      ctx.font = '900 52px "Playfair Display", Georgia, serif';
+      ctx.font = '900 48px "Playfair Display", Georgia, serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
       ctx.fillText('END ISLAND VOID FALL', 640, 330);
       
-      ctx.font = '600 24px "Inter", sans-serif';
-      ctx.fillStyle = '#E9D5FF';
-      ctx.fillText('MINECRAFT 3D RENDER', 640, 375);
+      ctx.font = '600 22px "Inter", sans-serif';
+      ctx.fillStyle = '#C084FC';
+      ctx.fillText('GALAXY VOID 3D RENDER', 640, 375);
     }
 
     return canvas.toDataURL('image/jpeg', 0.9);
   }
 
-  // Fallback trigger that builds visual artwork on the fly
+  // Instant image error fallback handler to ensure continuous preview
   function handleImgError(img, type) {
     img.onerror = null;
     img.src = createVisualThumbnail(type);
@@ -540,27 +552,27 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
         <p class="section-sub">Scroll horizontally to inspect my latest 3D designs.</p>
         
         <div class="scroll-container">
-          <!-- Card 1: Castle Wemmbu style -->
+          <!-- Card 1: Castle Wemmbu style 3 -->
           <div class="scroll-card" onclick="openLb(IMG_WEMMBU, 'wemmbu')">
-            <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'wemmbu')">
+            <img src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Purple Castle Lightning Render" onerror="handleImgError(this, 'wemmbu')">
             <div class="card-caption">
-              <span><i class="fa-solid fa-crown" style="color: var(--accent)"></i> Wemmbu Castle Battle</span>
+              <span><i class="fa-solid fa-crown" style="color: var(--accent)"></i> Purple Castle Battle (Wemmbu Style)</span>
               <i class="fa-solid fa-expand"></i>
             </div>
           </div>
 
           <!-- Card 2: Hiding behind tree -->
           <div class="scroll-card" onclick="openLb(IMG_HIDING, 'hiding')">
-            <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Player Hiding Near Village Render" onerror="handleImgError(this, 'hiding')">
+            <img src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Player Hiding Behind Tree Render" onerror="handleImgError(this, 'hiding')">
             <div class="card-caption">
               <span><i class="fa-solid fa-user-ninja" style="color: var(--accent)"></i> Stealth Village Hunt</span>
               <i class="fa-solid fa-expand"></i>
             </div>
           </div>
 
-          <!-- Card 3: Void Fall -->
+          <!-- Card 3: End Void Fall -->
           <div class="scroll-card" onclick="openLb(IMG_VOID, 'void')">
-            <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Character Falling Into The Void Render" onerror="handleImgError(this, 'void')">
+            <img src="reddit pci.jpg" alt="Falling into the End Void Render" onerror="handleImgError(this, 'void')">
             <div class="card-caption">
               <span><i class="fa-solid fa-meteor" style="color: var(--accent)"></i> End Island Void Fall</span>
               <i class="fa-solid fa-expand"></i>
@@ -617,10 +629,10 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 1 -->
           <div class="g-card-item" onclick="openLb(IMG_WEMMBU, 'wemmbu')">
             <div class="g-img-wrap">
-              <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'wemmbu')">
+              <img src="Minecraft wemmbu style thumbnail_3.jpg" alt="Dark Castle Battle Render" onerror="handleImgError(this, 'wemmbu')">
             </div>
             <div class="g-label">
-              <span>Dark Castle Battle (Wemmbu Style)</span>
+              <span>Purple Castle Team (Wemmbu Style)</span>
               <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
             </div>
           </div>
@@ -628,7 +640,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 2 -->
           <div class="g-card-item" onclick="openLb(IMG_HIDING, 'hiding')">
             <div class="g-img-wrap">
-              <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Stealth Village Hunt Render" onerror="handleImgError(this, 'hiding')">
+              <img src="2026-09-05_20.52.02.png_202609052055_2.jpg" alt="Stealth Village Hunt Render" onerror="handleImgError(this, 'hiding')">
             </div>
             <div class="g-label">
               <span>Hiding from Armored Players</span>
@@ -639,10 +651,10 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
           <!-- Item 3 -->
           <div class="g-card-item" onclick="openLb(IMG_VOID, 'void')">
             <div class="g-img-wrap">
-              <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Falling into the Void Render" onerror="handleImgError(this, 'void')">
+              <img src="reddit pci.jpg" alt="Falling into the Void Render" onerror="handleImgError(this, 'void')">
             </div>
             <div class="g-label">
-              <span>Falling into the Void</span>
+              <span>Falling into the Void (End Island)</span>
               <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
             </div>
           </div>
@@ -707,7 +719,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-inner" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lb-img" src="" alt="Enlarged 3D render preview" onerror="handleImgError(this, '3D Render Preview', '2D5A3D')">
+    <img id="lb-img" src="" alt="Enlarged 3D render preview">
   </div>
 </div>
 
