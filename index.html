@@ -6,7 +6,7 @@
 <title>Hamza — Minecraft Thumbnail Artist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -18,7 +18,7 @@
   --surface-card:#FFFFFF;
   --border:      #DDD8D0;
   --text:        #1A1714;
-  --muted:       #7A736A;
+  --muted:       #6E675E;
   --accent:      #2D5A3D;
   --accent-hover:#22442E;
   --accent-light:rgba(45,90,61,0.08);
@@ -28,9 +28,9 @@
   --serif-display: 'Playfair Display', Georgia, serif;
   --serif-body:    'Lora', Georgia, serif;
   --sans-ui:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --shadow-sm: 0 2px 8px rgba(26,23,20,0.04);
-  --shadow-md: 0 8px 24px rgba(26,23,20,0.08);
-  --radius-md: 12px;
+  --shadow-sm: 0 2px 8px rgba(26,23,20,0.05);
+  --shadow-md: 0 10px 28px rgba(26,23,20,0.08);
+  --radius-md: 14px;
 }
 
 html { scroll-behavior: smooth; }
@@ -52,36 +52,35 @@ body {
   padding: 0 24px;
 }
 
-/* HEADER */
 header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(248,245,240,0.92);
+  background: rgba(248,245,240,0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 .nav-inner {
   display: flex; align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 72px;
 }
 .logo {
   display: flex; align-items: center; gap: 12px;
   cursor: pointer; text-decoration: none;
 }
 .logo-mark {
-  width: 38px; height: 38px; border-radius: 10px;
+  width: 40px; height: 40px; border-radius: 10px;
   background: var(--accent);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif-display);
-  font-weight: 900; color: #fff; font-size: 18px;
+  font-weight: 900; color: #fff; font-size: 20px;
 }
 .logo-name {
   font-family: var(--serif-display);
-  font-weight: 700; font-size: 17px;
+  font-weight: 700; font-size: 18px;
   color: var(--text); line-height: 1.2;
 }
 .logo-role {
-  font-size: 11px; color: var(--muted);
+  font-size: 12px; color: var(--muted);
   font-family: var(--serif-body); font-style: italic;
 }
 
@@ -89,123 +88,251 @@ nav { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-
 .nav-btn {
   background: none; border: none; cursor: pointer;
   font-family: var(--sans-ui); font-size: 13px; font-weight: 500;
-  color: var(--muted); padding: 7px 14px; border-radius: 7px;
+  color: var(--muted); padding: 7px 18px; border-radius: 7px;
   transition: all 0.2s ease;
 }
-.nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.6); }
+.nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.7); }
 .nav-btn.active { color: #fff; background: var(--accent); font-weight: 600; }
 
 /* TABS */
 .tab { display: none; }
 .tab.active { display: block; }
 
-/* ABOUT TAB */
-.about-wrap { padding: 60px 0 80px; }
+.about-wrap { padding: 48px 0 80px; }
 
 .avail-tag {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 13px; font-family: var(--sans-ui); font-weight: 500;
   color: var(--accent); background: var(--accent-light);
   border: 1px solid var(--accent-border);
-  padding: 5px 14px; border-radius: 99px; margin-bottom: 24px;
+  padding: 6px 16px; border-radius: 99px; margin-bottom: 20px;
 }
 .avail-dot {
-  width: 7px; height: 7px; border-radius: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--accent);
 }
 
 .hero-title {
   font-family: var(--serif-display);
   font-weight: 900;
-  font-size: clamp(38px, 5.5vw, 60px);
-  line-height: 1.08; color: var(--text);
-  max-width: 720px; margin-bottom: 22px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.15; color: var(--text);
+  max-width: 780px; margin-bottom: 20px;
 }
-.hero-title span { color: var(--accent); font-style: italic; }
+.hero-title span { color: var(--accent); font-style: italic; font-weight: 800; }
 
-.hero-body { font-size: 18px; color: var(--muted); max-width: 580px; margin-bottom: 36px; }
+.hero-body { 
+  font-size: 18px; 
+  color: var(--muted); 
+  max-width: 650px; 
+  margin-bottom: 32px; 
+  font-family: var(--serif-body); 
+  line-height: 1.7;
+}
 
 .stats-row {
   display: grid; grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border); border-radius: var(--radius-md);
-  overflow: hidden; margin-bottom: 38px; background: var(--surface-card);
+  overflow: hidden; margin-bottom: 44px; background: var(--surface-card);
+  box-shadow: var(--shadow-sm);
 }
-.stat { padding: 20px; border-right: 1px solid var(--border); text-align: center; }
+.stat { padding: 20px 16px; border-right: 1px solid var(--border); text-align: center; }
 .stat:last-child { border-right: none; }
 .stat-n { font-family: var(--serif-display); font-weight: 900; font-size: 28px; color: var(--accent); display: block; }
-.stat-l { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: var(--sans-ui); }
+.stat-l { font-size: 12px; color: var(--muted); margin-top: 4px; font-family: var(--sans-ui); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* About Gallery Showcase */
-.about-showcase {
-  margin-top: 40px; margin-bottom: 40px;
-  display: flex; flex-direction: column; gap: 24px;
+.section-heading {
+  font-family: var(--serif-display);
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--text);
 }
-.about-img-card {
-  width: 100%; border-radius: var(--radius-md);
-  overflow: hidden; border: 1px solid var(--border);
-  background: var(--surface-card); cursor: pointer;
-  transition: transform 0.25s ease;
+.section-sub {
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 20px;
 }
-.about-img-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-.about-img-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
 
-/* Buttons */
-.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 16px;
+  margin-bottom: 48px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.scroll-container::-webkit-scrollbar { height: 6px; }
+.scroll-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+.scroll-card {
+  min-width: 85%;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-card);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+@media (min-width: 768px) {
+  .scroll-card { min-width: 480px; }
+}
+.scroll-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow-md); }
+.scroll-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.scroll-card .card-caption {
+  padding: 12px 18px;
+  font-family: var(--serif-body);
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+  border-top: 1px solid var(--border);
+  background: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scroll-card .card-caption span { display: flex; align-items: center; gap: 8px; }
+.scroll-card .card-caption i { color: var(--muted); font-size: 13px; }
+
+.about-details {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+}
+.about-details h2 {
+  font-family: var(--serif-display);
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.about-details p {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.why-me-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+.why-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+}
+.why-card h4 {
+  font-family: var(--serif-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.why-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* BUTTONS */
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .btn-fill {
-  display: inline-flex; align-items: center; gap: 9px;
+  display: inline-flex; align-items: center; gap: 10px;
   background: var(--accent); color: #fff;
   font-family: var(--sans-ui); font-size: 14px; font-weight: 600;
-  padding: 12px 22px; border-radius: 99px; border: none;
+  padding: 12px 24px; border-radius: 99px; border: none;
   cursor: pointer; text-decoration: none;
+  transition: all 0.2s ease;
 }
+.btn-fill:hover { background: var(--accent-hover); transform: translateY(-1px); }
 .btn-line {
-  display: inline-flex; align-items: center; gap: 9px;
+  display: inline-flex; align-items: center; gap: 10px;
   background: var(--surface-card); color: var(--text);
   font-family: var(--sans-ui); font-size: 14px; font-weight: 600;
-  padding: 12px 22px; border-radius: 99px; border: 1px solid var(--border);
+  padding: 12px 24px; border-radius: 99px; border: 1px solid var(--border);
   cursor: pointer; text-decoration: none;
+  transition: all 0.2s ease;
 }
+.btn-line:hover { background: var(--surface); border-color: var(--muted); }
 
-/* WORK TAB */
-.work-wrap { padding: 50px 0 80px; }
-.work-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
-.work-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(30px,4vw,44px); color: var(--text); }
-.work-sub { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 6px; }
+.work-wrap { padding: 48px 0 80px; }
+.work-header { margin-bottom: 28px; }
+.work-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(32px,4vw,44px); color: var(--text); }
+.work-sub { font-size: 15px; color: var(--muted); font-style: italic; margin-top: 6px; }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
-.g-card-item { width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); cursor: pointer; position: relative; background: var(--surface-card); }
+.g-card-item { width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); cursor: pointer; position: relative; background: var(--surface-card); transition: transform 0.25s ease; }
+.g-card-item:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow-md); }
 .g-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
 .g-card-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.g-card-item .g-label {
+  padding: 12px 16px;
+  font-family: var(--serif-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border);
+}
 
 /* LIGHTBOX */
 .lb { position: fixed; inset: 0; z-index: 100; background: rgba(10,8,6,0.94); display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(10px); }
 .lb.open { display: flex; }
 .lb-inner { position: relative; max-width: 1100px; width: 100%; display: flex; justify-content: center; }
 .lb img { width: 100%; max-height: 88vh; object-fit: contain; border-radius: 8px; display: block; }
-.lb-close { position: absolute; top: -46px; right: 0; background: none; border: none; cursor: pointer; color: #ccc; font-size: 24px; }
+.lb-close { position: absolute; top: -44px; right: 0; background: none; border: none; cursor: pointer; color: #fff; font-size: 26px; }
 
-/* CONTACT TAB */
-.contact-wrap { padding: 50px 0 80px; }
-.contact-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(28px,4vw,42px); color: var(--text); }
-.contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; margin-top: 24px; }
-.c-card { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.contact-wrap { padding: 48px 0 80px; }
+.contact-title { font-family: var(--serif-display); font-weight: 900; font-size: clamp(32px,4vw,44px); color: var(--text); }
+.contact-sub { font-size: 16px; color: var(--muted); margin-top: 8px; }
+.contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+.c-card { 
+  background: var(--surface-card); 
+  border: 1px solid var(--border); 
+  border-radius: var(--radius-md); 
+  padding: 26px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  gap: 16px; 
+  box-shadow: var(--shadow-sm); 
+}
+.c-card h3 { font-family: var(--serif-display); font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.c-card p { font-family: var(--sans-ui); font-size: 14px; word-break: break-all; color: var(--text); }
 
-footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 13px; color: var(--muted); font-style: italic; }
+footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 14px; color: var(--muted); font-style: italic; font-family: var(--serif-body); }
 
 @media (max-width: 768px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .contact-cards, .gallery-grid { grid-template-columns: 1fr; }
+  .contact-cards, .gallery-grid, .why-me-grid { grid-template-columns: 1fr; }
+  .about-details { padding: 24px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PASTE YOUR DIRECT IMAGE URLS HERE -->
 <script>
-  const IMAGE_1 = "PASTE_YOUR_IMAGE_1_URL_HERE";
-  const IMAGE_2 = "PASTE_YOUR_IMAGE_2_URL_HERE";
-  const IMAGE_3 = "PASTE_YOUR_IMAGE_3_URL_HERE";
+  // Exact 3 images provided for render gallery & home showcase
+  const IMG_WEMMBU = "Minecraft wemmbu style thumbnail_2.jpg";
+  const IMG_HIDING = "2026-09-05_20.52.02.png_202609052055.jpg";
+  const IMG_VOID   = "Character_falling_into_the_void_202609041557.jpeg";
 
   function showTab(name) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -223,12 +350,36 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
     document.getElementById('lb').classList.remove('open');
   }
 
-  // Populate image URLs automatically on load
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.img-1').forEach(img => { img.src = IMAGE_1; });
-    document.querySelectorAll('.img-2').forEach(img => { img.src = IMAGE_2; });
-    document.querySelectorAll('.img-3').forEach(img => { img.src = IMAGE_3; });
-  });
+  function copyText(id, btn) {
+    var text = document.getElementById(id).innerText.trim();
+    
+    // Copy using fallback or execCommand if clipboard API is restricted
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => showCopiedFeedback(btn));
+    } else {
+      var temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      showCopiedFeedback(btn);
+    }
+  }
+
+  function showCopiedFeedback(btn) {
+    var oldText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+    btn.style.background = 'var(--accent)';
+    btn.style.color = '#ffffff';
+    btn.style.borderColor = 'var(--accent)';
+    setTimeout(function() {
+      btn.innerHTML = oldText;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
+  }
 </script>
 
 <header>
@@ -251,102 +402,200 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: cente
 </header>
 
 <main>
-  <!-- ABOUT TAB -->
   <div id="tab-about" class="tab active">
     <div class="wrap">
       <div class="about-wrap">
         <div class="avail-tag"><span class="avail-dot"></span> Open for new orders</div>
-        <h1 class="hero-title">Minecraft thumbnails that <span>actually</span> get clicked.</h1>
-        <p class="hero-body">I'm <strong>Hamza</strong>. I make custom 3D Minecraft thumbnails — fully rendered in Blender and tailored to your video concept.</p>
+        <h1 class="hero-title">Minecraft thumbnails that get <span>more clicks</span>.</h1>
+        <p class="hero-body">
+          Hi! I’m <strong>Hamza</strong>. I design clean, high-quality 3D Minecraft thumbnails built in Blender to help your YouTube videos stand out and get views.
+        </p>
 
         <div class="stats-row">
-          <div class="stat"><span class="stat-n">10+</span><div class="stat-l">Thumbnails made</div></div>
-          <div class="stat"><span class="stat-n" style="color:var(--text)">100%</span><div class="stat-l">Custom 3D rigs</div></div>
-          <div class="stat"><span class="stat-n">24–48h</span><div class="stat-l">Delivery time</div></div>
-          <div class="stat"><span class="stat-n" style="color:var(--text)">4.9★</span><div class="stat-l">Client rating</div></div>
+          <div class="stat"><span class="stat-n">10+</span><div class="stat-l">Thumbnails Made</div></div>
+          <div class="stat"><span class="stat-n" style="color:var(--text)">100%</span><div class="stat-l">Custom 3D Rigs</div></div>
+          <div class="stat"><span class="stat-n">24–48h</span><div class="stat-l">Fast Delivery</div></div>
+          <div class="stat"><span class="stat-n" style="color:var(--text)">4.9★</span><div class="stat-l">Client Rating</div></div>
         </div>
 
-        <!-- MAIN 3 IMAGES -->
-        <div class="about-showcase">
-          <div class="about-img-card" onclick="openLb(IMAGE_1)">
-            <img class="img-1" alt="Render 1">
+        <!-- HORIZONTAL SCROLL SHOWCASE -->
+        <h2 class="section-heading">Featured Renders</h2>
+        <p class="section-sub">Scroll horizontally to inspect my latest 3D designs.</p>
+        
+        <div class="scroll-container">
+          <!-- Card 1: Castle Wemmbu style -->
+          <div class="scroll-card" onclick="openLb(IMG_WEMMBU)">
+            <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render">
+            <div class="card-caption">
+              <span><i class="fa-solid fa-crown" style="color: var(--accent)"></i> Wemmbu Castle Battle</span>
+              <i class="fa-solid fa-expand"></i>
+            </div>
           </div>
-          <div class="about-img-card" onclick="openLb(IMAGE_2)">
-            <img class="img-2" alt="Render 2">
+
+          <!-- Card 2: Hiding behind tree -->
+          <div class="scroll-card" onclick="openLb(IMG_HIDING)">
+            <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Player Hiding Near Village Render">
+            <div class="card-caption">
+              <span><i class="fa-solid fa-user-ninja" style="color: var(--accent)"></i> Stealth Village Hunt</span>
+              <i class="fa-solid fa-expand"></i>
+            </div>
           </div>
-          <div class="about-img-card" onclick="openLb(IMAGE_3)">
-            <img class="img-3" alt="Render 3">
+
+          <!-- Card 3: Void Fall -->
+          <div class="scroll-card" onclick="openLb(IMG_VOID)">
+            <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Character Falling Into The Void Render">
+            <div class="card-caption">
+              <span><i class="fa-solid fa-meteor" style="color: var(--accent)"></i> End Island Void Fall</span>
+              <i class="fa-solid fa-expand"></i>
+            </div>
           </div>
         </div>
 
-        <div class="btn-row">
-          <button class="btn-fill" onclick="showTab('work')"><i class="fa-solid fa-images"></i> See my work</button>
-          <button class="btn-line" onclick="showTab('contact')"><i class="fa-brands fa-discord" style="color:var(--discord-blue)"></i> Message me</button>
+        <!-- ABOUT ME & WHY ME DETAILED SECTION -->
+        <div class="about-details">
+          <h2>About Me & Why Choose Me?</h2>
+          <p>
+            A good thumbnail is the key to getting people to click your video. I do not just take in-game screenshots — I build complete 3D scenes in Blender with custom character poses, dramatic lighting, vibrant colors, and smooth post-processing.
+          </p>
+
+          <div class="why-me-grid">
+            <div class="why-card">
+              <h4><i class="fa-solid fa-eye"></i> Simple & Eye-Catching</h4>
+              <p>Clean focal points and high contrast so viewers spot your video instantly on YouTube.</p>
+            </div>
+            <div class="why-card">
+              <h4><i class="fa-solid fa-cube"></i> Custom 3D Rigs</h4>
+              <p>Made in Blender with expressive character posing, custom items, and detailed backgrounds.</p>
+            </div>
+            <div class="why-card">
+              <h4><i class="fa-solid fa-bolt"></i> Fast Turnaround</h4>
+              <p>Standard delivery within 24 to 48 hours so you never miss your upload deadline.</p>
+            </div>
+            <div class="why-card">
+              <h4><i class="fa-solid fa-comments"></i> Friendly & Direct</h4>
+              <p>Easy communication on Discord or Email to make sure you get the exact thumbnail you envision.</p>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-fill" onclick="showTab('work')"><i class="fa-solid fa-images"></i> View All Renders</button>
+            <a href="https://www.youtube.com/@OpHam01" target="_blank" class="btn-line"><i class="fa-brands fa-youtube" style="color:var(--yt-red)"></i> Visit YouTube Channel</a>
+            <button class="btn-line" onclick="showTab('contact')"><i class="fa-solid fa-envelope"></i> Contact Me</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- WORK TAB -->
   <div id="tab-work" class="tab">
     <div class="wrap">
       <div class="work-wrap">
         <div class="work-header">
-          <div>
-            <h1 class="work-title">My Renders</h1>
-            <p class="work-sub">Click any image to inspect full size</p>
-          </div>
+          <h1 class="work-title">My 3D Renders</h1>
+          <p class="work-sub">Click any thumbnail render below to open full size in high quality.</p>
         </div>
 
         <div class="gallery-grid">
-          <div class="g-card-item" onclick="openLb(IMAGE_1)">
-            <div class="g-img-wrap"><img class="img-1" alt="Render 1"></div>
+          <!-- Item 1 -->
+          <div class="g-card-item" onclick="openLb(IMG_WEMMBU)">
+            <div class="g-img-wrap">
+              <img src="Minecraft wemmbu style thumbnail_2.jpg" alt="Dark Castle Battle Render">
+            </div>
+            <div class="g-label">
+              <span>Dark Castle Battle (Wemmbu Style)</span>
+              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+            </div>
           </div>
-          <div class="g-card-item" onclick="openLb(IMAGE_2)">
-            <div class="g-img-wrap"><img class="img-2" alt="Render 2"></div>
+
+          <!-- Item 2 -->
+          <div class="g-card-item" onclick="openLb(IMG_HIDING)">
+            <div class="g-img-wrap">
+              <img src="2026-09-05_20.52.02.png_202609052055.jpg" alt="Stealth Village Hunt Render">
+            </div>
+            <div class="g-label">
+              <span>Hiding from Armored Players</span>
+              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+            </div>
           </div>
-          <div class="g-card-item" onclick="openLb(IMAGE_3)">
-            <div class="g-img-wrap"><img class="img-3" alt="Render 3"></div>
+
+          <!-- Item 3 -->
+          <div class="g-card-item" onclick="openLb(IMG_VOID)">
+            <div class="g-img-wrap">
+              <img src="Character_falling_into_the_void_202609041557.jpeg" alt="Falling into the Void Render">
+            </div>
+            <div class="g-label">
+              <span>Falling into the Void</span>
+              <i class="fa-solid fa-expand" style="color: var(--muted)"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CONTACT TAB -->
   <div id="tab-contact" class="tab">
     <div class="wrap">
       <div class="contact-wrap">
-        <h1 class="contact-title">Get in touch</h1>
+        <h1 class="contact-title">Let's work together</h1>
+        <p class="contact-sub">
+          Need a thumbnail for your next Minecraft video? Reach out via Discord, YouTube, or Email!
+        </p>
+
         <div class="contact-cards">
+          <!-- DISCORD CARD -->
           <div class="c-card">
-            <h3>Discord</h3>
-            <p><strong>op_hamm_</strong></p>
+            <div>
+              <h3><i class="fa-brands fa-discord" style="color:var(--discord-blue)"></i> Discord</h3>
+              <p id="discord-id" style="margin-top: 10px;"><strong>op_hamm_</strong></p>
+            </div>
+            <button class="btn-line" style="font-size: 13px; padding: 10px 18px;" onclick="copyText('discord-id', this)">
+              <i class="fa-solid fa-copy"></i> Copy Discord ID
+            </button>
           </div>
+
+          <!-- YOUTUBE CARD -->
           <div class="c-card">
-            <h3>YouTube</h3>
-            <p><strong>@OpHam01</strong></p>
+            <div>
+              <h3><i class="fa-brands fa-youtube" style="color:var(--yt-red)"></i> YouTube</h3>
+              <p style="margin-top: 10px;"><strong>@OpHam01</strong></p>
+            </div>
+            <a href="https://www.youtube.com/@OpHam01" target="_blank" class="btn-fill" style="font-size: 13px; padding: 10px 18px; text-decoration: none; justify-content: center;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Channel
+            </a>
           </div>
+
+          <!-- EMAIL CARD -->
           <div class="c-card">
-            <h3>Email</h3>
-            <p><strong>hamzashaikh1823@gmail.com</strong></p>
+            <div>
+              <h3><i class="fa-solid fa-envelope" style="color:#EA4335"></i> Gmail</h3>
+              <p id="email-address" style="margin-top: 10px;"><strong>hamzashaikh1823@gmail.com</strong></p>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn-line" style="font-size: 12px; padding: 8px 14px; flex: 1;" onclick="copyText('email-address', this)">
+                <i class="fa-solid fa-copy"></i> Copy Email
+              </button>
+              <a href="mailto:hamzashaikh1823@gmail.com" class="btn-fill" style="font-size: 12px; padding: 8px 14px; text-decoration: none; flex: 1; justify-content: center;">
+                <i class="fa-solid fa-paper-plane"></i> Send Mail
+              </a>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </main>
 
-<!-- LIGHTBOX -->
 <div class="lb" id="lb" onclick="closeLb()">
   <div class="lb-inner" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLb()"><i class="fa-solid fa-xmark"></i></button>
-    <img id="lb-img" src="" alt="Enlarged render">
+    <img id="lb-img" src="" alt="Enlarged 3D render preview">
   </div>
 </div>
 
 <footer>
-  <div class="wrap">© Hamza — Minecraft 3D Thumbnail Art</div>
+  <div class="wrap">© Hamza — Minecraft 3D Thumbnail Portfolio</div>
 </footer>
 
 </body>
